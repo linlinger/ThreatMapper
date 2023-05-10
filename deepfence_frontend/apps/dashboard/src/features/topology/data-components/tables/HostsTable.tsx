@@ -10,10 +10,10 @@ import {
   DropdownItem,
   getRowSelectionColumn,
   IconButton,
+  Listbox,
+  ListboxOption,
   Popover,
   RowSelectionState,
-  Select,
-  SelectItem,
   SortingState,
   Table,
   TableSkeleton,
@@ -710,13 +710,13 @@ function Filters({
                   </div>
                 </fieldset>
                 <fieldset>
-                  <Select
-                    noPortal
-                    name="cloud-provider"
-                    label={'Cloud Provider'}
+                  <Listbox
+                    multiple
+                    sizing="sm"
                     placeholder="Select Cloud Provider"
+                    label="Cloud Provider"
                     value={filters.cloudProvider}
-                    sizing="xs"
+                    name="cloud-provider"
                     onChange={(value) => {
                       onFiltersChange({
                         ...filters,
@@ -732,14 +732,14 @@ function Filters({
                       'aws_fargate',
                       'softlayer',
                       'private_cloud',
-                    ].map((cloudProvider: string) => {
+                    ].map((cloudProvider) => {
                       return (
-                        <SelectItem value={cloudProvider} key={cloudProvider}>
+                        <ListboxOption value={cloudProvider} key={cloudProvider}>
                           {upperCase(cloudProvider)}
-                        </SelectItem>
+                        </ListboxOption>
                       );
                     })}
-                  </Select>
+                  </Listbox>
                 </fieldset>
               </div>
             </div>

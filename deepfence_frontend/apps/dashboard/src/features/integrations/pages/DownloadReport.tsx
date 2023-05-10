@@ -26,9 +26,9 @@ import {
   createColumnHelper,
   Dropdown,
   DropdownItem,
+  Listbox,
+  ListboxOption,
   Modal,
-  Select,
-  SelectItem,
   Switch,
   Table,
   TableSkeleton,
@@ -608,25 +608,25 @@ const AdvancedFilter = ({
           ) : null}
 
           {isCloudNode(nodeType as CloudNodeType) && (
-            <Select
+            <Listbox
+              multiple
+              sizing="sm"
+              placeholder="Select accounts"
+              label="Select Account (Optional)"
               value={selectedCloudAccounts}
               name="accountIds[]"
               onChange={(value) => {
                 setSelectedCloudAccounts(value);
               }}
-              placeholder="Select accounts"
-              label="Select Account (Optional)"
-              sizing="xs"
-              className="mt-2"
             >
               {cloudAccounts.map((account) => {
                 return (
-                  <SelectItem value={account.node_id} key={account.node_id}>
+                  <ListboxOption value={account.node_id} key={account.node_id}>
                     {account.node_name}
-                  </SelectItem>
+                  </ListboxOption>
                 );
               })}
-            </Select>
+            </Listbox>
           )}
           {nodeType === 'host' ? (
             <>
@@ -661,44 +661,46 @@ const AdvancedFilter = ({
           ) : null}
 
           {provider && (
-            <Select
+            <Listbox
+              multiple
+              sizing="sm"
+              placeholder="Select mask type"
+              label="Select Mask/Unmask (Optional)"
               value={maskedType}
               name="mask[]"
               onChange={(value) => {
                 setMaskedType(value);
               }}
-              placeholder="Select mask type"
-              label="Select Mask/Unmask (Optional)"
-              sizing="xs"
             >
-              {['Masked', 'Unmasked']?.map((provider) => {
+              {['Masked', 'Unmasked'].map((mask) => {
                 return (
-                  <SelectItem value={provider} key={provider}>
-                    {provider}
-                  </SelectItem>
+                  <ListboxOption value={mask} key={mask}>
+                    {mask}
+                  </ListboxOption>
                 );
               })}
-            </Select>
+            </Listbox>
           )}
           {provider && (
-            <Select
+            <Listbox
+              multiple
+              sizing="sm"
+              placeholder="Select Status"
+              label="Select Status (Optional)"
               value={status}
               name="status[]"
               onChange={(value) => {
                 setStatus(value);
               }}
-              placeholder="Select Status"
-              label="Select Status (Optional)"
-              sizing="xs"
             >
-              {['COMPLETE', 'ERROR']?.map((provider) => {
+              {['COMPLETE', 'ERROR'].map((status) => {
                 return (
-                  <SelectItem value={provider} key={provider}>
-                    {provider}
-                  </SelectItem>
+                  <ListboxOption value={status} key={status}>
+                    {status}
+                  </ListboxOption>
                 );
               })}
-            </Select>
+            </Listbox>
           )}
         </div>
       ) : null}
@@ -716,46 +718,51 @@ const CloudComplianceForm = ({
 
   return (
     <div className="flex flex-col gap-y-4">
-      <Select
+      <Listbox
+        sizing="sm"
+        placeholder="Select Provider"
         label="Select Provider"
         value={provider}
         name="nodeType"
         onChange={(value) => {
           setProvider(value);
         }}
-        placeholder="Select Provider"
-        sizing="xs"
+        getDisplayValue={(item) => {
+          return item;
+        }}
       >
-        {['Aws', 'Google', 'Azure', 'Linux'].map((resource) => {
+        {['Aws', 'Google', 'Azure', 'Linux'].map((status) => {
           return (
-            <SelectItem value={resource} key={resource}>
-              {resource}
-            </SelectItem>
+            <ListboxOption value={status} key={status}>
+              {status}
+            </ListboxOption>
           );
         })}
-      </Select>
+      </Listbox>
 
       {provider && (
-        <>
-          <Select
-            value={benchmarkType}
-            name="severity[]"
-            onChange={(value) => {
-              setBenchmarkType(value);
-            }}
-            placeholder="Select check type"
-            label="Select Check Type"
-            sizing="xs"
-          >
-            {getBenchmarkList(provider)?.map((provider) => {
-              return (
-                <SelectItem value={provider} key={provider}>
-                  {provider}
-                </SelectItem>
-              );
-            })}
-          </Select>
-        </>
+        <Listbox
+          multiple
+          sizing="sm"
+          placeholder="Select check type"
+          label="Select Check Type"
+          value={benchmarkType}
+          name="severity[]"
+          onChange={(value) => {
+            setBenchmarkType(value);
+          }}
+          getDisplayValue={(item) => {
+            return item;
+          }}
+        >
+          {getBenchmarkList(provider)?.map((checkType) => {
+            return (
+              <ListboxOption value={checkType} key={checkType}>
+                {checkType}
+              </ListboxOption>
+            );
+          })}
+        </Listbox>
       )}
     </div>
   );
@@ -774,42 +781,47 @@ const CommomForm = ({
 
   return (
     <>
-      <Select
+      <Listbox
+        sizing="sm"
+        placeholder="Select Node Type"
         label="Select Node Type"
         value={provider}
         name="nodeType"
         onChange={(value) => {
           setProvider(value);
         }}
-        placeholder="Select Node Type"
-        sizing="xs"
+        getDisplayValue={(item) => {
+          return item;
+        }}
       >
         {Object.keys(nonComplianceNode(resource)).map((resource) => {
           return (
-            <SelectItem value={resource} key={resource}>
+            <ListboxOption value={resource} key={resource}>
               {resource}
-            </SelectItem>
+            </ListboxOption>
           );
         })}
-      </Select>
-      <Select
+      </Listbox>
+
+      <Listbox
+        multiple
+        sizing="sm"
+        placeholder="Select Severity"
         label="Select Severity"
         value={severity}
         name="severity[]"
         onChange={(value) => {
           setSeverity(value);
         }}
-        placeholder="Select Severity"
-        sizing="xs"
       >
-        {['Critical', 'High', 'Medium', 'Low'].map((resource) => {
+        {['Critical', 'High', 'Medium', 'Low'].map((severity) => {
           return (
-            <SelectItem value={resource} key={resource}>
-              {resource}
-            </SelectItem>
+            <ListboxOption value={severity} key={severity}>
+              {severity}
+            </ListboxOption>
           );
         })}
-      </Select>
+      </Listbox>
     </>
   );
 };
@@ -832,7 +844,9 @@ const DownloadForm = () => {
           value={ActionEnumType.ADD}
         />
         <div className="p-5 gap-y-4 flex flex-col">
-          <Select
+          <Listbox
+            sizing="sm"
+            placeholder="Select resource"
             label="Select Resource"
             value={resource}
             name="resource"
@@ -840,17 +854,18 @@ const DownloadForm = () => {
               setResource(value);
               setProvider('');
             }}
-            placeholder="Select resource"
-            sizing="xs"
+            getDisplayValue={(item) => {
+              return item;
+            }}
           >
             {Object.keys(UtilsReportFiltersScanTypeEnum).map((resource) => {
               return (
-                <SelectItem value={resource} key={resource}>
+                <ListboxOption value={resource} key={resource}>
                   {resource}
-                </SelectItem>
+                </ListboxOption>
               );
             })}
-          </Select>
+          </Listbox>
 
           {resource === 'CloudCompliance' ? (
             <CloudComplianceForm setProvider={setProvider} provider={provider} />
@@ -864,24 +879,27 @@ const DownloadForm = () => {
             />
           ) : null}
 
-          <Select
+          <Listbox
+            sizing="sm"
+            placeholder="Select Duration"
             label="Select Duration"
             value={duration}
             name="duration"
             onChange={(value) => {
               setDuration(value);
             }}
-            placeholder="Select Duration"
-            sizing="xs"
+            getDisplayValue={(item) => {
+              return item;
+            }}
           >
-            {Object.keys(DURATION).map((resource) => {
+            {Object.keys(DURATION).map((duration) => {
               return (
-                <SelectItem value={resource} key={resource}>
-                  {resource}
-                </SelectItem>
+                <ListboxOption value={duration} key={duration}>
+                  {duration}
+                </ListboxOption>
               );
             })}
-          </Select>
+          </Listbox>
 
           <TextInput
             className="w-full"
@@ -904,24 +922,27 @@ const DownloadForm = () => {
         <AdvancedFilter provider={provider} resourceType={resource} />
 
         <div className="p-5 pt-0 gap-y-4 flex flex-col">
-          <Select
+          <Listbox
+            sizing="sm"
+            placeholder="Download Type"
             label="Select Download Type"
             value={downloadType}
             name="downloadType"
             onChange={(value) => {
               setDownloadType(value);
             }}
-            placeholder="Download Type"
-            sizing="xs"
+            getDisplayValue={(item) => {
+              return item;
+            }}
           >
-            {Object.keys(ModelGenerateReportReqReportTypeEnum).map((resource) => {
+            {Object.keys(ModelGenerateReportReqReportTypeEnum).map((type) => {
               return (
-                <SelectItem value={resource} key={resource}>
-                  {resource}
-                </SelectItem>
+                <ListboxOption value={type} key={type}>
+                  {type}
+                </ListboxOption>
               );
             })}
-          </Select>
+          </Listbox>
 
           <Button size="xs" color="primary" className="mt-2">
             Generate Report

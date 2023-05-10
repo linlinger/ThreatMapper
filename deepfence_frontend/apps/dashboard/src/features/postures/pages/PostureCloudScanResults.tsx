@@ -38,11 +38,11 @@ import {
   DropdownItem,
   getRowSelectionColumn,
   IconButton,
+  Listbox,
+  ListboxOption,
   Modal,
   Popover,
   RowSelectionState,
-  Select,
-  SelectItem,
   SortingState,
   Table,
   TableSkeleton,
@@ -1065,13 +1065,13 @@ const FilterComponent = () => {
               </div>
             </fieldset>
             <fieldset>
-              <Select
-                noPortal
-                name="benchmarkType"
-                label={'Benchmark Type'}
+              <Listbox
+                sizing="sm"
+                multiple
                 placeholder="Select Benchmark Type"
+                label="Benchmark Type"
                 value={searchParams.getAll('benchmarkType')}
-                sizing="xs"
+                name="benchmarkType"
                 onChange={(value) => {
                   setSearchParams((prev) => {
                     prev.delete('benchmarkType');
@@ -1085,24 +1085,27 @@ const FilterComponent = () => {
               >
                 {benchmarks.map((status: string) => {
                   return (
-                    <SelectItem value={status.toLowerCase()} key={status.toLowerCase()}>
+                    <ListboxOption
+                      value={status.toLowerCase()}
+                      key={status.toLowerCase()}
+                    >
                       {status.toUpperCase()}
-                    </SelectItem>
+                    </ListboxOption>
                   );
                 })}
-              </Select>
+              </Listbox>
             </fieldset>
             <fieldset>
               {status === 'loading' ? (
                 <CircleSpinner size="xs" />
               ) : (
-                <Select
-                  noPortal
-                  name="services"
-                  label={'Service Name'}
+                <Listbox
+                  multiple
+                  sizing="sm"
                   placeholder="Select Service Name"
+                  label="Service Name"
                   value={searchParams.getAll('services')}
-                  sizing="xs"
+                  name="services"
                   onChange={(value) => {
                     setSearchParams((prev) => {
                       prev.delete('services');
@@ -1116,22 +1119,22 @@ const FilterComponent = () => {
                 >
                   {services.map((service: string) => {
                     return (
-                      <SelectItem value={service} key={service}>
+                      <ListboxOption value={service} key={service}>
                         {service}
-                      </SelectItem>
+                      </ListboxOption>
                     );
                   })}
-                </Select>
+                </Listbox>
               )}
             </fieldset>
             <fieldset>
-              <Select
-                noPortal
-                name="status"
-                label={'Status'}
+              <Listbox
+                multiple
+                sizing="sm"
                 placeholder="Select Status"
+                label="Status"
                 value={searchParams.getAll('status')}
-                sizing="xs"
+                name="status"
                 onChange={(value) => {
                   setSearchParams((prev) => {
                     prev.delete('status');
@@ -1145,12 +1148,15 @@ const FilterComponent = () => {
               >
                 {statuses.map((status: string) => {
                   return (
-                    <SelectItem value={status.toLowerCase()} key={status.toLowerCase()}>
+                    <ListboxOption
+                      value={status.toLowerCase()}
+                      key={status.toLowerCase()}
+                    >
                       {status.toUpperCase()}
-                    </SelectItem>
+                    </ListboxOption>
                   );
                 })}
-              </Select>
+              </Listbox>
             </fieldset>
           </div>
         </div>

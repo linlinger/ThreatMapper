@@ -1,10 +1,10 @@
 import cx from 'classnames';
-import { memo, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { HiViewGridAdd } from 'react-icons/hi';
 import {
   Card,
-  Select,
-  SelectItem,
+  Listbox,
+  ListboxOption,
   Step,
   Stepper,
   TextInput,
@@ -158,20 +158,26 @@ ${sockCommand}="${_socketPath}" \\
       </div>
       <div className="grid grid-cols-2 mb-4">
         <div className="max-w-sm">
-          <Select
+          <Listbox
+            sizing="sm"
+            label="Select Container Runtime"
             value={containerRuntime}
-            name="region"
             onChange={(value) => {
               setContainerRuntime(value);
               setSocketPath(socketMap[value].path || '');
             }}
-            label="Select Container Runtime"
-            sizing="xs"
+            getDisplayValue={(item) => {
+              return item;
+            }}
           >
-            {containerRuntimeDropdown.map((runtime) => (
-              <SelectItem value={runtime.name} key={runtime.name} />
-            ))}
-          </Select>
+            {containerRuntimeDropdown.map((runtime) => {
+              return (
+                <ListboxOption key={runtime.name} value={runtime.name}>
+                  {runtime.name}
+                </ListboxOption>
+              );
+            })}
+          </Listbox>
         </div>
         <div className="max-w-sm">
           <TextInput

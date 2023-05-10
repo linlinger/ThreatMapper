@@ -38,11 +38,11 @@ import {
   DropdownItem,
   getRowSelectionColumn,
   IconButton,
+  Listbox,
+  ListboxOption,
   Modal,
   Popover,
   RowSelectionState,
-  Select,
-  SelectItem,
   SortingState,
   Table,
   TableSkeleton,
@@ -1034,13 +1034,13 @@ const FilterComponent = () => {
               </div>
             </fieldset>
             <fieldset>
-              <Select
-                noPortal
-                name="benchmarkType"
-                label={'Benchmark Type'}
+              <Listbox
+                multiple
+                sizing="sm"
                 placeholder="Select Benchmark Type"
+                label="Benchmark Type"
                 value={searchParams.getAll('benchmarkType')}
-                sizing="xs"
+                name="benchmarkType"
                 onChange={(value) => {
                   setSearchParams((prev) => {
                     prev.delete('benchmarkType');
@@ -1054,40 +1054,48 @@ const FilterComponent = () => {
               >
                 {benchmarks.map((status: string) => {
                   return (
-                    <SelectItem value={status.toLowerCase()} key={status.toLowerCase()}>
+                    <ListboxOption
+                      value={status.toLowerCase()}
+                      key={status.toLowerCase()}
+                    >
                       {status.toUpperCase()}
-                    </SelectItem>
+                    </ListboxOption>
                   );
                 })}
-              </Select>
+              </Listbox>
             </fieldset>
             <fieldset>
-              <Select
-                noPortal
-                name="status"
-                label={'Status'}
-                placeholder="Select Status"
-                value={searchParams.getAll('status')}
-                sizing="xs"
-                onChange={(value) => {
-                  setSearchParams((prev) => {
-                    prev.delete('status');
-                    value.forEach((language) => {
-                      prev.append('status', language);
+              <>
+                <Listbox
+                  multiple
+                  sizing="sm"
+                  placeholder="Select Status"
+                  label="Status"
+                  value={searchParams.getAll('status')}
+                  name="status"
+                  onChange={(value) => {
+                    setSearchParams((prev) => {
+                      prev.delete('status');
+                      value.forEach((language) => {
+                        prev.append('status', language);
+                      });
+                      prev.delete('page');
+                      return prev;
                     });
-                    prev.delete('page');
-                    return prev;
-                  });
-                }}
-              >
-                {statuses.map((status: string) => {
-                  return (
-                    <SelectItem value={status.toLowerCase()} key={status.toLowerCase()}>
-                      {status.toUpperCase()}
-                    </SelectItem>
-                  );
-                })}
-              </Select>
+                  }}
+                >
+                  {statuses.map((status: string) => {
+                    return (
+                      <ListboxOption
+                        value={status.toLowerCase()}
+                        key={status.toLowerCase()}
+                      >
+                        {status.toUpperCase()}
+                      </ListboxOption>
+                    );
+                  })}
+                </Listbox>
+              </>
             </fieldset>
           </div>
         </div>

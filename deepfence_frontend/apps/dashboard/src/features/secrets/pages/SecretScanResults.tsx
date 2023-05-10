@@ -39,11 +39,11 @@ import {
   DropdownSubMenu,
   getRowSelectionColumn,
   IconButton,
+  Listbox,
+  ListboxOption,
   Modal,
   Popover,
   RowSelectionState,
-  Select,
-  SelectItem,
   SortingState,
   Table,
   TableSkeleton,
@@ -753,7 +753,6 @@ const ActionDropdown = ({
   );
 };
 const SecretTable = () => {
-  const fetcher = useFetcher();
   const loaderData = useLoaderData() as LoaderDataType;
   const columnHelper = createColumnHelper<ModelSecret>();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -1146,13 +1145,13 @@ const HeaderComponent = ({
                                 </div>
                               </fieldset>
                               <fieldset>
-                                <Select
-                                  noPortal
-                                  name="severity"
-                                  label={'Severity'}
+                                <Listbox
+                                  multiple
+                                  sizing="sm"
                                   placeholder="Select Severity"
+                                  label="Severity"
                                   value={searchParams.getAll('severity')}
-                                  sizing="xs"
+                                  name="severity"
                                   onChange={(value) => {
                                     setSearchParams((prev) => {
                                       prev.delete('severity');
@@ -1167,13 +1166,13 @@ const HeaderComponent = ({
                                   {['critical', 'high', 'medium', 'low', 'unknown'].map(
                                     (severity: string) => {
                                       return (
-                                        <SelectItem value={severity} key={severity}>
+                                        <ListboxOption value={severity} key={severity}>
                                           {capitalize(severity)}
-                                        </SelectItem>
+                                        </ListboxOption>
                                       );
                                     },
                                   )}
-                                </Select>
+                                </Listbox>
                               </fieldset>
                             </div>
                           </div>

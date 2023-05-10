@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useFetcher, useParams } from 'react-router-dom';
-import { Button, Card, Radio, Select, SelectItem, TextInput } from 'ui-components';
+import { Button, Card, Listbox, ListboxOption, Radio, TextInput } from 'ui-components';
 
 import { SearchableClusterList } from '@/components/forms/SearchableClusterList';
 import { SearchableContainerList } from '@/components/forms/SearchableContainerList';
@@ -98,7 +98,7 @@ const AdvancedFilters = ({ notificationType }: { notificationType: string }) => 
   const [selectedSeverity, setSelectedSeverity] = useState([]);
 
   // status
-  const [selectedStatus, setSelectedStatus] = useState([]);
+  const [selectedStatus, setSelectedStatus] = useState<string[]>([]);
 
   return (
     <div className="flex flex-col gap-y-3">
@@ -115,39 +115,40 @@ const AdvancedFilters = ({ notificationType }: { notificationType: string }) => 
       <SearchableClusterList />
 
       {notificationType === 'Compliance' || notificationType === 'CloudCompliance' ? (
-        <Select
-          value={selectedStatus}
+        <Listbox
+          multiple
+          sizing="sm"
           name="statusFilter"
+          placeholder="Select status"
+          value={selectedStatus}
           onChange={(value) => {
             setSelectedStatus(value);
           }}
-          placeholder="Select status"
-          sizing="xs"
         >
-          <SelectItem value={'Alarm'}>Alarm</SelectItem>
-          <SelectItem value={'Info'}>Info</SelectItem>
-          <SelectItem value={'Ok'}>Ok</SelectItem>
-          <SelectItem value={'Skip'}>Skip</SelectItem>
-        </Select>
+          <ListboxOption value={'Alarm'}>Alarm</ListboxOption>
+          <ListboxOption value={'Info'}>Info</ListboxOption>
+          <ListboxOption value={'Ok'}>Ok</ListboxOption>
+          <ListboxOption value={'Skip'}>Skip</ListboxOption>
+        </Listbox>
       ) : null}
 
       {['Secret', 'Vulnerability', 'Malware'].includes(
         notificationType as ScanTypeEnum,
       ) ? (
-        <Select
-          value={selectedSeverity}
+        <Listbox
+          sizing="sm"
           name="severityFilter"
+          placeholder="Select severity"
+          value={selectedSeverity}
           onChange={(value) => {
             setSelectedSeverity(value);
           }}
-          placeholder="Select severity"
-          sizing="xs"
         >
-          <SelectItem value={'Critical'}>Critical</SelectItem>
-          <SelectItem value={'High'}>High</SelectItem>
-          <SelectItem value={'Medium'}>Medium</SelectItem>
-          <SelectItem value={'Low'}>Low</SelectItem>
-        </Select>
+          <ListboxOption value={'Critical'}>Critical</ListboxOption>
+          <ListboxOption value={'High'}>High</ListboxOption>
+          <ListboxOption value={'Medium'}>Medium</ListboxOption>
+          <ListboxOption value={'Low'}>Low</ListboxOption>
+        </Listbox>
       ) : null}
     </div>
   );
@@ -167,9 +168,11 @@ const NotificationType = () => {
 
   return (
     <div className="w-full">
-      <Select
-        value={notificationType}
+      <Listbox
+        sizing="sm"
         name="_notificationType"
+        placeholder="Select notification type"
+        value={notificationType}
         onChange={(value) => {
           if (value === 'CloudTrail Alert') {
             setNotificationType('CloudTrail Alert');
@@ -177,22 +180,23 @@ const NotificationType = () => {
             setNotificationType(value);
           }
         }}
-        placeholder="Select notification type"
-        sizing="xs"
+        getDisplayValue={(item) => {
+          return item;
+        }}
       >
-        <SelectItem value={'Vulnerability'}>Vulnerability</SelectItem>
-        <SelectItem value={'Secret'}>Secret</SelectItem>
-        <SelectItem value={'Malware'}>Malware</SelectItem>
-        <SelectItem value={'Compliance'}>Compliance</SelectItem>
+        <ListboxOption value={'Vulnerability'}>Vulnerability</ListboxOption>
+        <ListboxOption value={'Secret'}>Secret</ListboxOption>
+        <ListboxOption value={'Malware'}>Malware</ListboxOption>
+        <ListboxOption value={'Compliance'}>Compliance</ListboxOption>
 
         {CloudTrailIntegration.includes(integrationType) && (
-          <SelectItem value={CLOUD_TRAIL_ALERT}>CloudTrail Alert</SelectItem>
+          <ListboxOption value={CLOUD_TRAIL_ALERT}>CloudTrail Alert</ListboxOption>
         )}
 
         {UserActivityIntegration.includes(integrationType) ? (
-          <SelectItem value={USER_ACTIVITIES}>User Activities</SelectItem>
+          <ListboxOption value={USER_ACTIVITIES}>User Activities</ListboxOption>
         ) : null}
-      </Select>
+      </Listbox>
 
       {notificationType &&
       !isCloudTrailNotification(notificationType) &&

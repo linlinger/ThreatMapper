@@ -21,9 +21,9 @@ import {
   createColumnHelper,
   Dropdown,
   DropdownItem,
+  Listbox,
+  ListboxOption,
   Modal,
-  Select,
-  SelectItem,
   Table,
   TableSkeleton,
   TextInput,
@@ -416,22 +416,20 @@ const InviteUserModal = ({
           required
           helperText={data?.fieldErrors?.email}
         />
-        <Select
-          noPortal
-          name="role"
-          label={'Role'}
-          placeholder="Role"
-          sizing="xs"
-          helperText={data?.fieldErrors?.role}
-        >
+        <Listbox sizing="sm" placeholder="Role" label="Role" name="role">
           {Object.keys(ModelUpdateUserIdRequestRoleEnum).map((role) => {
             return (
-              <SelectItem value={role} key={role}>
+              <ListboxOption value={role} key={role}>
                 {role}
-              </SelectItem>
+              </ListboxOption>
             );
           })}
-        </Select>
+        </Listbox>
+        {data?.fieldErrors?.role ? (
+          <span className={`text-red-600 dark:text-red-500 text-sm`}>
+            {data?.fieldErrors?.role}
+          </span>
+        ) : null}
         <div className={`text-red-600 dark:text-red-500 text-sm`}>
           {!data?.success && data?.message && <span>{data.message}</span>}
         </div>
@@ -532,35 +530,46 @@ const EditUserModal = ({
           helperText={data?.fieldErrors?.lastName}
           required
         />
-        <Select
-          noPortal
-          defaultValue={role}
-          name="role"
-          label={'Role'}
+        <Listbox
+          sizing="sm"
           placeholder="Role"
-          sizing="xs"
-          helperText={data?.fieldErrors?.role}
+          label="Role"
+          name="role"
+          getDisplayValue={(item: string) => {
+            return item;
+          }}
         >
           {Object.keys(ModelUpdateUserIdRequestRoleEnum).map((role) => {
             return (
-              <SelectItem value={role} key={role}>
+              <ListboxOption value={role} key={role}>
                 {role}
-              </SelectItem>
+              </ListboxOption>
             );
           })}
-        </Select>
-        <Select
-          noPortal
-          name="status"
-          label={'Status'}
+        </Listbox>
+        {data?.fieldErrors?.role ? (
+          <span className={`text-red-600 dark:text-red-500 text-sm`}>
+            {data?.fieldErrors?.role}
+          </span>
+        ) : null}
+
+        <Listbox
+          sizing="sm"
           placeholder="Active"
-          sizing="xs"
-          defaultValue={user?.is_active ? 'Active' : 'inActive'}
-          helperText={data?.fieldErrors?.status}
+          label="Status"
+          value={user?.is_active ? 'Active' : 'InActive'}
+          name="status"
+          getDisplayValue={(item) => item}
         >
-          <SelectItem value="Active">Active</SelectItem>
-          <SelectItem value="InActive">InActive</SelectItem>
-        </Select>
+          <ListboxOption value="Active">Active</ListboxOption>
+          <ListboxOption value="InActive">InActive</ListboxOption>
+        </Listbox>
+        {data?.fieldErrors?.status ? (
+          <span className={`text-red-600 dark:text-red-500 text-sm`}>
+            {data?.fieldErrors?.status}
+          </span>
+        ) : null}
+
         <div className={`text-red-600 dark:text-red-500 text-sm`}>
           {!data?.success && data?.message && <span>{data.message}</span>}
         </div>

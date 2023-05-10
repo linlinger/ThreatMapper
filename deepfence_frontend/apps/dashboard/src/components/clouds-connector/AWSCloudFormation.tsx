@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { HiArrowNarrowRight, HiViewGridAdd } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
-import { Select, SelectItem, Step, Stepper, Typography } from 'ui-components';
+import { Listbox, ListboxOption, Step, Stepper, Typography } from 'ui-components';
 
 const AWS_REGIONS = [
   'us-east-1',
@@ -48,19 +48,26 @@ export const AWSCloudFormation = () => {
         </Step>
         <Step indicator="1" title="Region Selection">
           <div className="w-1/2">
-            <Select
+            <Listbox
+              sizing="sm"
+              placeholder="Select a region"
               value={region}
               name="region"
               onChange={(value) => {
                 setRegion(value);
               }}
-              placeholder="Select a region"
-              sizing="xs"
+              getDisplayValue={(item) => {
+                return item;
+              }}
             >
-              {AWS_REGIONS.map((region) => (
-                <SelectItem value={region} key={region} />
-              ))}
-            </Select>
+              {AWS_REGIONS.map((region) => {
+                return (
+                  <ListboxOption key={region} value={region}>
+                    {region}
+                  </ListboxOption>
+                );
+              })}
+            </Listbox>
           </div>
         </Step>
         <Step indicator="2" title="Deploy">

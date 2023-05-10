@@ -13,9 +13,9 @@ import { toast } from 'sonner';
 import {
   Button,
   CircleSpinner,
+  Listbox,
+  ListboxOption,
   Modal,
-  Select,
-  SelectItem,
   TextInput,
 } from 'ui-components';
 
@@ -200,19 +200,21 @@ const EmailConfigurationModal = ({
           name="_actionType"
           value={ActionEnumType.ADD_CONFIGURATION}
         />
-        <Select
-          noPortal
-          name="email_provider"
-          label={'Email Provider'}
+        <Listbox
+          sizing="sm"
           placeholder="Email Provider"
-          sizing="xs"
-          onChange={(value) => setEmailProvider(value)}
+          label="Email Provider"
           value={emailProvider}
+          name="email_provider"
+          onChange={(value) => setEmailProvider(value)}
+          getDisplayValue={(item) => {
+            return item;
+          }}
         >
-          <SelectItem value={'Google SMTP'}>Google SMTP</SelectItem>
-          <SelectItem value={'Amazon SES'}>Amazon SES</SelectItem>
-          <SelectItem value={'SMTP'}>SMTP</SelectItem>
-        </Select>
+          <ListboxOption value={'Google SMTP'}>Google SMTP</ListboxOption>
+          <ListboxOption value={'Amazon SES'}>Amazon SES</ListboxOption>
+          <ListboxOption value={'SMTP'}>SMTP</ListboxOption>
+        </Listbox>
         <TextInput
           label="Email"
           type={'email'}
