@@ -1,0 +1,7 @@
+import{R as s}from"./index-f1f749bf.js";import{c as u}from"./index-74f03c09.js";import"./_commonjsHelpers-042e6b4d.js";const t=({count:a,color:e="default"})=>s.createElement("span",{className:u("leading-none py-[0.3125rem] px-2.5 rounded-full text-sm font-medium",{["bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200"]:e==="default",["bg-blue-600 text-gray-100 dark:bg-blue-500 dark:text-white"]:e==="primary",["bg-red-600 text-gray-100 dark:bg-red-500 dark:text-white"]:e==="danger",["bg-green-600 text-gray-100 dark:bg-green-500 dark:text-white"]:e==="success",["bg-gray-600 text-gray-100 dark:bg-gray-500 dark:text-white"]:e==="normal"})},a);try{t.displayName="CountIndicator",t.__docgenInfo={description:"",displayName:"CountIndicator",props:{count:{defaultValue:null,description:"",name:"count",required:!0,type:{name:"number"}},color:{defaultValue:{value:"default"},description:"",name:"color",required:!1,type:{name:"enum",value:[{value:'"default"'},{value:'"success"'},{value:'"primary"'},{value:'"danger"'},{value:'"normal"'}]}}}}}catch{}const g={title:"components/Indicator",component:t},r={args:{count:10,color:"success"}};var n,o,d;r.parameters={...r.parameters,docs:{...(n=r.parameters)==null?void 0:n.docs,source:{originalSource:`{
+  args: {
+    count: 10,
+    color: 'success'
+  }
+}`,...(d=(o=r.parameters)==null?void 0:o.docs)==null?void 0:d.source}}};const m=["DefaultCountIndicator"];export{r as DefaultCountIndicator,m as __namedExportsOrder,g as default};
+//# sourceMappingURL=Indicator.stories-09971436.js.map
