@@ -63,6 +63,7 @@ const SingleSelectTemplate: StoryFn<typeof Listbox> = () => {
         value={selected}
         label="Person"
         name="single-select"
+        helperText="Some placeholder text"
         onChange={(item) => {
           setSelected(item);
         }}

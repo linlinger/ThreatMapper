@@ -13,6 +13,7 @@ import { isNil } from 'lodash-es';
 import { ReactNode, useEffect, useId, useState } from 'react';
 import { createPortal } from 'react-dom';
 
+import HelperText from '@/components/input/HelperText';
 import { dfTwMerge } from '@/utils/twmerge';
 export type SizeType = 'md';
 export type ColorType = 'default' | 'error';
@@ -158,6 +159,7 @@ interface ListboxProps<TType, TActualType>
   getDisplayValue?: (value?: TType) => string;
   required?: boolean;
   id?: string;
+  helperText?: string;
 }
 export function Listbox<TType, TActualType>({
   sizing,
@@ -169,6 +171,8 @@ export function Listbox<TType, TActualType>({
   getDisplayValue,
   required,
   id,
+  helperText,
+  disabled,
   ...props
 }: ListboxProps<TType, TActualType>) {
   const internalId = useId();
@@ -193,12 +197,17 @@ export function Listbox<TType, TActualType>({
     ],
   });
   return (
-    <HUIListbox {...props} value={value}>
-      <div className="flex flex-col gap-2 w-full">
+    <HUIListbox {...props} value={value} disabled={disabled}>
+      <div className="flex flex-col w-full">
         {label && (
           <HUIListbox.Label
             htmlFor={_id}
-            className={'text-p3 text-gray-900 dark:text-text-text-and-icon pb-[10px]'}
+            className={cx(
+              'text-p3 text-gray-900 dark:text-text-text-and-icon pb-[10px]',
+              {
+                'dark:text-gray-600': disabled,
+              },
+            )}
           >
             {required && <span>*</span>}
             {label}
@@ -218,6 +227,11 @@ export function Listbox<TType, TActualType>({
           </span>
           <SelectArrow />
         </HUIListbox.Button>
+        {helperText && (
+          <div className="pt-1.5">
+            <HelperText color={color} text={helperText} />
+          </div>
+        )}
         <Portal>
           <Transition
             as={'div'}
