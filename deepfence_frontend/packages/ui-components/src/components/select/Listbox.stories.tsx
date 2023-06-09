@@ -22,7 +22,7 @@ const MultiSelectTemplate: StoryFn<typeof Listbox> = () => {
 
   return (
     <Listbox
-      sizing="sm"
+      sizing="md"
       value={selected}
       label="Select your value"
       name="multiple-select"

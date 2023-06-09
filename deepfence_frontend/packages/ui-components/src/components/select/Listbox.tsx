@@ -1,3 +1,5 @@
+import './input.css';
+
 import { autoUpdate, flip, offset, size, useFloating } from '@floating-ui/react-dom';
 import {
   Listbox as HUIListbox,
@@ -10,23 +12,15 @@ import { cva } from 'cva';
 import { isNil } from 'lodash-es';
 import { ReactNode, useEffect, useId, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { HiOutlineChevronDown } from 'react-icons/hi';
-import { IconContext } from 'react-icons/lib';
-import { twMerge } from 'tailwind-merge';
-export type SizeType = 'sm' | 'md' | 'lg';
-export type ColorType = 'default' | 'error' | 'success';
-type IconProps = {
-  icon: React.ReactNode;
-  name?: string;
-  sizing?: SizeType;
-  color?: ColorType;
-};
+
+import { dfTwMerge } from '@/utils/twmerge';
+export type SizeType = 'md';
+export type ColorType = 'default' | 'error';
+
 const optionCva = cva([], {
   variants: {
     size: {
-      sm: 'text-xs px-2.5 py-2',
       md: 'text-sm px-2.5 py-2',
-      lg: 'text-base px-5 py-2.5',
     },
   },
   defaultVariants: {
@@ -35,26 +29,43 @@ const optionCva = cva([], {
 });
 const buttonCva = cva(
   [
-    'block w-full ring-1 rounded-lg relative',
-    'font-normal',
+    'df-button relative',
     'focus:outline-none',
     'disabled:cursor-not-allowed',
+    'pl-1.5 pt-1.5 pb-[5px]',
+    'border-b',
+    'dark:bg-transparent',
+    'transition-[background-size] duration-[0.2s] ease-[ease]',
   ],
   {
     variants: {
       color: {
         default: [
-          'ring-gray-300 focus:ring-blue-600',
-          'dark:ring-gray-600 dark:focus:ring-blue-600',
-          // bg styles
-          'bg-gray-50',
-          'dark:bg-gray-700',
-          // placeholder styles
-          'placeholder-gray-500 disabled:placeholder-gray-400',
-          'dark:placeholder-gray-400 dark:disabled:placeholder-gray-500',
-          // text styles
-          'text-gray-900 disabled:text-gray-700',
-          'dark:text-white dark:disabled:text-gray-200',
+          dfTwMerge(
+            cx(
+              // border
+              'dark:border-text-text-and-icon',
+              // bg styles
+              // 'bg-gray-50',
+              // placeholder styles
+              'placeholder-gray-500 disabled:placeholder-gray-400',
+              'dark:placeholder-gray-400 dark:disabled:placeholder-gray-500',
+              // text font
+              'dark:text-p4',
+              // text styles
+              'text-gray-900 dark:text-text-input-value',
+              // disabled text color
+              'disabled:text-gray-700 dark:disabled:text-gray-600',
+              // focus style
+              'dark:bg-[length:0%_100%] dark:focus:bg-[length:100%_100%]',
+              'dark:focus:border-b-accent-accent',
+              // dark and bg styles
+              'dark:bg-no-repeat',
+              'dark:focus:bg-no-repeat',
+              // 'dark:focus:bg-[linear-gradient(to_bottom,_transparent_95%,_#489CFF_95%)]',
+              // 'dark:bg-[linear-gradient(to_bottom,_transparent_95%,_#489CFF_95%)]',
+            ),
+          ),
         ],
         error: [
           // ring styles
@@ -70,25 +81,9 @@ const buttonCva = cva(
           'text-red-700 disabled:text-red-500',
           'dark:text-red-500 dark:disabled:text-red-700',
         ],
-        success: [
-          // ring styles
-          'ring-green-300 focus:ring-green-500',
-          'dark:ring-green-800 dark:focus:ring-green-500',
-          // bg styles
-          'bg-green-50',
-          'dark:bg-gray-700',
-          // placeholder styles
-          'placeholder-green-400 disabled:placeholder-green-300',
-          'dark:placeholder-green-700 dark:disabled:placeholder-green-800',
-          // text styles
-          'text-green-700 disabled:text-green-500',
-          'dark:text-green-500 dark:disabled:text-green-700',
-        ],
       },
       size: {
-        sm: 'text-sm font-normal px-2.5 py-2 rounded-lg',
-        md: 'leading-tight text-sm font-normal p-3 rounded-lg',
-        lg: 'text-base font-normal px-4 py-3.5 rounded-lg',
+        md: '',
       },
     },
     defaultVariants: {
@@ -97,25 +92,53 @@ const buttonCva = cva(
     },
   },
 );
-const SelectArrow = ({ color }: Omit<IconProps, 'icon'>) => {
+const CaretIcon = () => {
+  return (
+    <svg
+      width="10"
+      height="10"
+      viewBox="0 0 10 10"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M1.79999 3.74445L4.99999 7.05556L8.19999 3.74445C8.38102 3.55652 8.37542 3.25742 8.18749 3.07639C7.99956 2.89536 7.70046 2.90096 7.51944 3.08889L4.99999 5.69722L2.47777 3.08889C2.29674 2.90096 1.99764 2.89536 1.80971 3.07639C1.62178 3.25742 1.61619 3.55652 1.79721 3.74445H1.79999Z"
+        fill="black"
+      />
+      <mask
+        id="mask0_10866_516"
+        maskUnits="userSpaceOnUse"
+        x="1"
+        y="2"
+        width="8"
+        height="6"
+      >
+        <path
+          d="M1.79999 3.74445L4.99999 7.05556L8.19999 3.74445C8.38102 3.55652 8.37542 3.25742 8.18749 3.07639C7.99956 2.89536 7.70046 2.90096 7.51944 3.08889L4.99999 5.69722L2.47777 3.08889C2.29674 2.90096 1.99764 2.89536 1.80971 3.07639C1.62178 3.25742 1.61619 3.55652 1.79721 3.74445H1.79999Z"
+          fill="white"
+        />
+      </mask>
+      <g mask="url(#mask0_10866_516)">
+        <rect
+          x="10"
+          y="10"
+          width="10"
+          height="10"
+          transform="rotate(-180 10 10)"
+          fill="#B2C0C9"
+        />
+      </g>
+    </svg>
+  );
+};
+const SelectArrow = () => {
   return (
     <span
       className={cx(
-        'pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3',
+        'pointer-events-none absolute inset-y-0 right-0 flex items-center pr-1.5',
       )}
     >
-      <IconContext.Provider
-        value={{
-          className: twMerge(
-            cx('text-gray-500 dark:text-gray-400 w-[18px] h-[18px]', {
-              'text-red-500 dark:text-red-400': color === 'error',
-              'text-green-500 dark:text-green-400': color === 'success',
-            }),
-          ),
-        }}
-      >
-        <HiOutlineChevronDown />
-      </IconContext.Provider>
+      <CaretIcon />
     </span>
   );
 };
@@ -172,29 +195,28 @@ export function Listbox<TType, TActualType>({
   return (
     <HUIListbox {...props} value={value}>
       <div className="flex flex-col gap-2 w-full">
-        <HUIListbox.Label
-          htmlFor={_id}
-          className={'text-sm font-medium text-gray-900 dark:text-white'}
-        >
-          {required && <span>*</span>}
-          {label}
-        </HUIListbox.Label>
+        {label && (
+          <HUIListbox.Label
+            htmlFor={_id}
+            className={'text-p3 text-gray-900 dark:text-text-text-and-icon pb-[10px]'}
+          >
+            {required && <span>*</span>}
+            {label}
+          </HUIListbox.Label>
+        )}
+
         <HUIListbox.Button
           id={_id}
           ref={(ele) => refs.setReference(ele)}
-          className={twMerge(
-            cx(
-              buttonCva({
-                size: sizing,
-                color,
-              }),
-            ),
-          )}
+          className={buttonCva({
+            size: sizing,
+            color,
+          })}
         >
           <span className="truncate text-start block">
             {getPlaceholderValue(value, getDisplayValue, placeholder)}
           </span>
-          <SelectArrow sizing={sizing} color={color} />
+          <SelectArrow />
         </HUIListbox.Button>
         <Portal>
           <Transition
@@ -213,7 +235,7 @@ export function Listbox<TType, TActualType>({
             }}
           >
             <HUIListbox.Options
-              className={twMerge(
+              className={dfTwMerge(
                 cx(
                   'shadow-sm bg-white dark:bg-gray-700 w-full',
                   'rounded-md',
@@ -238,7 +260,7 @@ export function ListboxOption<TType>({ sizing, ...props }: ListBoxOptionProps<TT
   return (
     <HUIListbox.Option
       className={({ active, selected }) => {
-        return twMerge(
+        return dfTwMerge(
           cx(
             'relative select-none py-2 pl-3 pr-3',
             'text-gray-500 dark:text-gray-300 cursor-pointer',
