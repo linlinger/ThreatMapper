@@ -18,16 +18,6 @@ import { dfTwMerge } from '@/utils/twmerge';
 export type SizeType = 'md';
 export type ColorType = 'default' | 'error';
 
-const optionCva = cva([], {
-  variants: {
-    size: {
-      md: 'text-sm px-2.5 py-2',
-    },
-  },
-  defaultVariants: {
-    size: 'md',
-  },
-});
 const buttonCva = cva(
   [
     'df-button relative',
@@ -222,7 +212,7 @@ export function Listbox<TType, TActualType>({
             color,
           })}
         >
-          <span className="truncate text-start block">
+          <span className="truncate text-start block dark:text-text-input-value">
             {getPlaceholderValue(value, getDisplayValue, placeholder)}
           </span>
           <SelectArrow />
@@ -251,9 +241,11 @@ export function Listbox<TType, TActualType>({
             <HUIListbox.Options
               className={dfTwMerge(
                 cx(
-                  'shadow-sm bg-white dark:bg-gray-700 w-full',
-                  'rounded-md',
-                  'border border-gray-200 dark:border-gray-600',
+                  // bg
+                  'bg-white dark:bg-bg-card',
+                  'text-p7',
+                  // border
+                  'border dark:border dark:border-bg-left-nav',
                   'focus:outline-none select-none',
                   'max-h-60 overflow-y-auto',
                 ),
@@ -276,17 +268,16 @@ export function ListboxOption<TType>({ sizing, ...props }: ListBoxOptionProps<TT
       className={({ active, selected }) => {
         return dfTwMerge(
           cx(
-            'relative select-none py-2 pl-3 pr-3',
-            'text-gray-500 dark:text-gray-300 cursor-pointer',
+            'relative select-none',
+            'px-1.5 pt-2 pb-1',
+            'cursor-pointer',
             // text
-            'text-gray-500 dark:text-gray-300',
+            'text-gray-500 dark:text-text-text-and-icon',
+            'dark:hover:bg-bg-grid-header',
             {
-              'bg-gray-100 dark:bg-gray-600': active,
-              'text-blue-600 dark:text-blue-400': selected,
+              'dark:bg-bg-active-selection dark:text-text-input-value': selected,
             },
-            optionCva({
-              size: sizing,
-            }),
+            {},
           ),
         );
       }}
@@ -301,7 +292,7 @@ function getPlaceholderValue<T extends unknown | unknown[]>(
 ) {
   if (isNil(value) || (Array.isArray(value) && !value.length)) {
     return (
-      <span className="text-gray-500 dark:text-gray-400 block">
+      <span className="text-gray-500 dark:text-gray-600 block">
         {defaultPlaceholder ?? 'Select...'}
       </span>
     );
