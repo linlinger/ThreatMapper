@@ -15,7 +15,7 @@ import { useIntersection } from 'react-use';
 import { twMerge } from 'tailwind-merge';
 
 import HelperText from '@/components/input/HelperText';
-import { Badge, CircleSpinner } from '@/main';
+import { CircleSpinner } from '@/main';
 import { dfTwMerge } from '@/utils/twmerge';
 
 export type SizeType = 'md';
@@ -212,7 +212,7 @@ export function Combobox<TValue, TTag extends ElementType = typeof DEFAULT_COMBO
 
   return (
     <HUICombobox {...(props as any)} disabled={disabled}>
-      <div className="relative flex flex-col">
+      <div className="flex flex-col">
         <HUICombobox.Label
           className={cx('text-p3 text-gray-900 dark:text-text-text-and-icon pb-[10px]', {
             'dark:text-gray-600': disabled,
@@ -242,12 +242,13 @@ export function Combobox<TValue, TTag extends ElementType = typeof DEFAULT_COMBO
 
             <SelectArrow />
           </HUICombobox.Button>
-          {helperText && (
-            <div className="pt-1.5">
-              <HelperText color={color} text={helperText} />
-            </div>
-          )}
         </div>
+
+        {helperText && (
+          <div className="pt-1.5">
+            <HelperText color={color} text={helperText} />
+          </div>
+        )}
         <Portal>
           <Transition
             as={'div'}

@@ -10,52 +10,52 @@ export default {
 
 const OPTIONS = [
   {
-    name: 'John',
+    name: 'Jane',
     id: '1',
     age: 20,
   },
   {
-    name: 'Jane',
+    name: 'Jack',
     id: '2',
     age: 21,
   },
   {
-    name: 'John',
+    name: 'Jill',
     id: '1',
     age: 20,
   },
   {
-    name: 'Jane',
+    name: 'Jocker',
     id: '2',
     age: 21,
   },
   {
-    name: 'John',
+    name: 'Juju',
     id: '1',
     age: 20,
   },
   {
-    name: 'Jane',
+    name: 'Jeje',
     id: '2',
     age: 21,
   },
   {
-    name: 'John',
+    name: 'Jaja',
     id: '1',
     age: 20,
   },
   {
-    name: 'Jane',
+    name: 'Julia',
     id: '2',
     age: 21,
   },
   {
-    name: 'John',
+    name: 'Julon',
     id: '1',
     age: 20,
   },
   {
-    name: 'Jane',
+    name: 'James',
     id: '2',
     age: 21,
   },
@@ -231,6 +231,7 @@ const MultiSelectNonNullableTemplate: StoryFn<typeof Combobox> = () => {
         setQuery(query);
       }}
       label="Select your value"
+      helperText="Some helper text"
       onChange={(value) => {
         setSelected(value);
       }}
@@ -253,6 +254,10 @@ const MultiSelectNonNullableTemplate: StoryFn<typeof Combobox> = () => {
 };
 
 export const MultiSelectNonNullable = {
+  render: MultiSelectNonNullableTemplate,
+  args: {},
+};
+export const MultiSelectNonNullableWithHelperText = {
   render: MultiSelectNonNullableTemplate,
   args: {},
 };

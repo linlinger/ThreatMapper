@@ -277,7 +277,6 @@ export function ListboxOption<TType>({ sizing, ...props }: ListBoxOptionProps<TT
             {
               'dark:bg-bg-active-selection dark:text-text-input-value': selected,
             },
-            {},
           ),
         );
       }}
