@@ -22,11 +22,13 @@ const MultiSelectTemplate: StoryFn<typeof Listbox> = () => {
 
   return (
     <Listbox
-      sizing="md"
       value={selected}
       label="Select your value"
       name="multiple-select"
       multiple
+      getDisplayValue={() => {
+        return 'PropertyName';
+      }}
       onChange={(item) => {
         setSelected(item);
       }}
@@ -59,7 +61,6 @@ const SingleSelectTemplate: StoryFn<typeof Listbox> = () => {
       }}
     >
       <Listbox
-        sizing="md"
         value={selected}
         label="Person"
         name="single-select"

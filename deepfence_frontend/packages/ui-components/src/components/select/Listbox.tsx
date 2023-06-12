@@ -1,5 +1,3 @@
-import './input.css';
-
 import { autoUpdate, flip, offset, size, useFloating } from '@floating-ui/react-dom';
 import {
   Listbox as HUIListbox,
@@ -7,26 +5,32 @@ import {
   ListboxProps as HUIListboxProps,
   Transition,
 } from '@headlessui/react';
+import { Checkbox } from 'ariakit';
 import cx from 'classnames';
 import { cva } from 'cva';
 import { isNil } from 'lodash-es';
-import { ReactNode, useEffect, useId, useState } from 'react';
+import { createContext, ReactNode, useContext, useEffect, useId, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import HelperText from '@/components/input/HelperText';
+import { Badge } from '@/main';
 import { dfTwMerge } from '@/utils/twmerge';
-export type SizeType = 'md';
-export type ColorType = 'default' | 'error';
+export type ColorType = 'default';
+
+const ListboxContext = createContext<{
+  multiple: boolean;
+}>({
+  multiple: false,
+});
 
 const buttonCva = cva(
   [
-    'df-button relative',
+    'relative',
     'focus:outline-none',
     'disabled:cursor-not-allowed',
-    'pl-1.5 pt-1.5 pb-[5px]',
-    'border-b',
-    'dark:bg-transparent',
-    'transition-[background-size] duration-[0.2s] ease-[ease]',
+    'py-[7px] px-3',
+    // border radius
+    'border rounded-[5px]',
   ],
   {
     variants: {
@@ -35,51 +39,23 @@ const buttonCva = cva(
           dfTwMerge(
             cx(
               // border
-              'dark:border-text-text-and-icon',
+              'dark:border-bg-grid-border',
               // bg styles
-              // 'bg-gray-50',
+              'dark:bg-bg-card',
               // placeholder styles
               'placeholder-gray-500 disabled:placeholder-gray-400',
               'dark:placeholder-gray-400 dark:disabled:placeholder-gray-500',
-              // text font
-              'dark:text-p4',
               // text styles
               'text-gray-900 dark:text-text-input-value',
               // disabled text color
               'disabled:text-gray-700 dark:disabled:text-gray-600',
-              // focus style
-              'dark:bg-[length:0%_100%] dark:focus:bg-[length:100%_100%]',
-              'dark:focus:border-b-accent-accent',
-              // dark and bg styles
-              'dark:bg-no-repeat',
-              'dark:focus:bg-no-repeat',
-              // 'dark:focus:bg-[linear-gradient(to_bottom,_transparent_95%,_#489CFF_95%)]',
-              // 'dark:bg-[linear-gradient(to_bottom,_transparent_95%,_#489CFF_95%)]',
             ),
           ),
         ],
-        error: [
-          // ring styles
-          'ring-red-200 focus:ring-red-500',
-          'dark:ring-red-800 dark:focus:ring-red-500',
-          // bg styles
-          'bg-red-50',
-          'dark:bg-gray-700',
-          // placeholder styles
-          'placeholder-red-400 disabled:placeholder-red-300',
-          'dark:placeholder-red-700 dark:disabled:placeholder-red-800',
-          // text styles
-          'text-red-700 disabled:text-red-500',
-          'dark:text-red-500 dark:disabled:text-red-700',
-        ],
-      },
-      size: {
-        md: '',
       },
     },
     defaultVariants: {
       color: 'default',
-      size: 'md',
     },
   },
 );
@@ -93,11 +69,11 @@ const CaretIcon = () => {
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M1.79999 3.74445L4.99999 7.05556L8.19999 3.74445C8.38102 3.55652 8.37542 3.25742 8.18749 3.07639C7.99956 2.89536 7.70046 2.90096 7.51944 3.08889L4.99999 5.69722L2.47777 3.08889C2.29674 2.90096 1.99764 2.89536 1.80971 3.07639C1.62178 3.25742 1.61619 3.55652 1.79721 3.74445H1.79999Z"
+        d="M1.79996 3.74455L4.99996 7.05566L8.19996 3.74455C8.38099 3.55662 8.37539 3.25752 8.18746 3.0765C7.99953 2.89547 7.70043 2.90107 7.51941 3.089L4.99996 5.69733L2.47774 3.089C2.29671 2.90107 1.99761 2.89547 1.80968 3.0765C1.62175 3.25752 1.61616 3.55662 1.79718 3.74455H1.79996Z"
         fill="black"
       />
       <mask
-        id="mask0_10866_516"
+        id="mask0_10955_28428"
         maskUnits="userSpaceOnUse"
         x="1"
         y="2"
@@ -105,18 +81,18 @@ const CaretIcon = () => {
         height="6"
       >
         <path
-          d="M1.79999 3.74445L4.99999 7.05556L8.19999 3.74445C8.38102 3.55652 8.37542 3.25742 8.18749 3.07639C7.99956 2.89536 7.70046 2.90096 7.51944 3.08889L4.99999 5.69722L2.47777 3.08889C2.29674 2.90096 1.99764 2.89536 1.80971 3.07639C1.62178 3.25742 1.61619 3.55652 1.79721 3.74445H1.79999Z"
+          d="M1.79996 3.74455L4.99996 7.05566L8.19996 3.74455C8.38099 3.55662 8.37539 3.25752 8.18746 3.0765C7.99953 2.89547 7.70043 2.90107 7.51941 3.089L4.99996 5.69733L2.47774 3.089C2.29671 2.90107 1.99761 2.89547 1.80968 3.0765C1.62175 3.25752 1.61616 3.55662 1.79718 3.74455H1.79996Z"
           fill="white"
         />
       </mask>
-      <g mask="url(#mask0_10866_516)">
+      <g mask="url(#mask0_10955_28428)">
         <rect
           x="10"
           y="10"
           width="10"
           height="10"
           transform="rotate(-180 10 10)"
-          fill="#B2C0C9"
+          fill="currentColor"
         />
       </g>
     </svg>
@@ -124,11 +100,7 @@ const CaretIcon = () => {
 };
 const SelectArrow = () => {
   return (
-    <span
-      className={cx(
-        'pointer-events-none absolute inset-y-0 right-0 flex items-center pr-1.5',
-      )}
-    >
+    <span className={cx('pointer-events-none flex items-center')}>
       <CaretIcon />
     </span>
   );
@@ -141,7 +113,6 @@ interface ListboxProps<TType, TActualType>
     TType,
     TActualType
   > {
-  sizing?: SizeType;
   color?: ColorType;
   children?: React.ReactNode;
   label?: string;
@@ -152,7 +123,6 @@ interface ListboxProps<TType, TActualType>
   helperText?: string;
 }
 export function Listbox<TType, TActualType>({
-  sizing,
   color,
   children,
   value,
@@ -163,6 +133,7 @@ export function Listbox<TType, TActualType>({
   id,
   helperText,
   disabled,
+  multiple,
   ...props
 }: ListboxProps<TType, TActualType>) {
   const internalId = useId();
@@ -187,92 +158,111 @@ export function Listbox<TType, TActualType>({
     ],
   });
   return (
-    <HUIListbox {...props} value={value} disabled={disabled}>
-      <div className="flex flex-col w-full">
-        {label && (
-          <HUIListbox.Label
-            htmlFor={_id}
-            className={cx(
-              'text-p3 text-gray-900 dark:text-text-text-and-icon pb-[10px]',
-              {
-                'dark:text-gray-600': disabled,
-              },
-            )}
-          >
-            {required && <span>*</span>}
-            {label}
-          </HUIListbox.Label>
-        )}
-
-        <HUIListbox.Button
-          id={_id}
-          ref={(ele) => refs.setReference(ele)}
-          className={buttonCva({
-            size: sizing,
-            color,
-          })}
-        >
-          <span className="truncate text-start block dark:text-text-input-value">
-            {getPlaceholderValue(value, getDisplayValue, placeholder)}
-          </span>
-          <SelectArrow />
-        </HUIListbox.Button>
-        {helperText && (
-          <div className="pt-1.5">
-            <HelperText color={color} text={helperText} />
-          </div>
-        )}
-        <Portal>
-          <Transition
-            as={'div'}
-            enter="transition ease-out duration-1200"
-            enterFrom="opacity-0 -translate-y-1"
-            enterTo="opacity-100 translate-y-0"
-            leave="transition ease-in duration-1200"
-            leaveFrom="opacity-100 translate-y-0"
-            leaveTo="opacity-0 -translate-y-1"
-            ref={(ele) => refs.setFloating(ele)}
-            style={{
-              position: strategy,
-              top: y ?? 0,
-              left: x ?? 0,
-            }}
-          >
-            <HUIListbox.Options
-              className={dfTwMerge(
-                cx(
-                  // bg
-                  'bg-white dark:bg-bg-card',
-                  'text-p7',
-                  // border
-                  'border dark:border dark:border-bg-left-nav',
-                  'focus:outline-none select-none',
-                  'max-h-60 overflow-y-auto',
-                ),
+    <ListboxContext.Provider
+      value={{
+        multiple: !!multiple,
+      }}
+    >
+      <HUIListbox {...props} value={value} disabled={disabled} multiple={multiple}>
+        <div className="flex flex-col w-full">
+          {label && (
+            <HUIListbox.Label
+              htmlFor={_id}
+              className={cx(
+                'text-p3 text-gray-900 dark:text-text-text-and-icon pb-[10px]',
+                {
+                  'dark:text-gray-600': disabled,
+                },
               )}
             >
-              {children}
-            </HUIListbox.Options>
-          </Transition>
-        </Portal>
-      </div>
-    </HUIListbox>
+              {required && <span>*</span>}
+              {label}
+            </HUIListbox.Label>
+          )}
+
+          <HUIListbox.Button
+            id={_id}
+            ref={(ele) => refs.setReference(ele)}
+            className={buttonCva({
+              color,
+            })}
+          >
+            <span className="truncate text-start block text-p7">
+              {getPlaceholderValue(value, getDisplayValue, placeholder)}
+            </span>
+            <div
+              className={cx('absolute inset-y-0 right-0 flex pr-3', {
+                'gap-[18px]': multiple,
+              })}
+            >
+              <SelectArrow />
+              {multiple && Array.isArray(value) ? (
+                <Badge label={value?.length} size="sm" />
+              ) : null}
+            </div>
+          </HUIListbox.Button>
+          {helperText && (
+            <div className="pt-1.5">
+              <HelperText color={color} text={helperText} />
+            </div>
+          )}
+          <Portal>
+            <Transition
+              as={'div'}
+              enter="transition ease-out duration-1200"
+              enterFrom="opacity-0 -translate-y-1"
+              enterTo="opacity-100 translate-y-0"
+              leave="transition ease-in duration-1200"
+              leaveFrom="opacity-100 translate-y-0"
+              leaveTo="opacity-0 -translate-y-1"
+              ref={(ele) => refs.setFloating(ele)}
+              style={{
+                position: strategy,
+                top: y ?? 0,
+                left: x ?? 0,
+              }}
+            >
+              <HUIListbox.Options
+                className={dfTwMerge(
+                  cx(
+                    // bg
+                    'bg-white dark:bg-bg-card',
+                    'text-p7',
+                    // border
+                    'border dark:border-bg-grid-border',
+                    'rounded-[5px]',
+                    'focus:outline-none select-none',
+                    'max-h-60 overflow-y-auto',
+                    // text
+                    'dark:text-text-text-and-icon',
+                  ),
+                )}
+              >
+                {children}
+              </HUIListbox.Options>
+            </Transition>
+          </Portal>
+        </div>
+      </HUIListbox>
+    </ListboxContext.Provider>
   );
 }
-interface ListBoxOptionProps<TType> extends HUIListboxOptionProps<'li', TType> {
-  sizing?: SizeType;
-}
-export function ListboxOption<TType>({ sizing, ...props }: ListBoxOptionProps<TType>) {
+
+export function ListboxOption<TType>({
+  children,
+  ...props
+}: HUIListboxOptionProps<'li', TType>) {
+  const { multiple } = useContext(ListboxContext);
+
   return (
     <HUIListbox.Option
-      className={({ active, selected }) => {
+      className={({ selected }) => {
         return dfTwMerge(
           cx(
             'relative select-none',
-            'px-1.5 pt-2 pb-1',
+            'py-[7px] px-3',
+            'flex gap-1.5',
             'cursor-pointer',
-            // text
-            'text-gray-500 dark:text-text-text-and-icon',
             'dark:hover:bg-bg-grid-header',
             {
               'dark:bg-bg-active-selection dark:text-text-input-value': selected,
@@ -281,7 +271,14 @@ export function ListboxOption<TType>({ sizing, ...props }: ListBoxOptionProps<TT
         );
       }}
       {...props}
-    />
+    >
+      {({ selected }) => (
+        <>
+          {multiple ? <Checkbox checked={selected} /> : null}
+          {children}
+        </>
+      )}
+    </HUIListbox.Option>
   );
 }
 function getPlaceholderValue<T extends unknown | unknown[]>(
@@ -289,18 +286,16 @@ function getPlaceholderValue<T extends unknown | unknown[]>(
   getDisplayValue?: (value?: T) => string,
   defaultPlaceholder?: string,
 ) {
-  if (isNil(value) || (Array.isArray(value) && !value.length)) {
+  if (isNil(value)) {
     return (
-      <span className="text-gray-500 dark:text-gray-600 block">
-        {defaultPlaceholder ?? 'Select...'}
+      <span className="dark:text-gray-600 block">
+        {defaultPlaceholder || 'Select...'}
       </span>
     );
   } else if (getDisplayValue) {
-    return getDisplayValue?.(value);
-  } else if (Array.isArray(value)) {
-    return `${value.length} selected`;
+    return getDisplayValue(value);
   }
-  return '1 item selected';
+  return 'Select...';
 }
 
 function Portal(props: { children: ReactNode }) {

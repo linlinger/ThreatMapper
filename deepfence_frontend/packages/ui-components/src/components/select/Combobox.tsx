@@ -23,15 +23,11 @@ export type ColorType = 'default' | 'error';
 
 const inputCva = cva(
   [
-    'df-button relative w-full',
+    'relative w-full border',
     'focus:outline-none',
     'disabled:cursor-not-allowed',
-    'pl-1.5 pt-1.5 pb-[5px]',
-    'border-b',
-    'dark:bg-transparent',
-    // text font
-    'dark:text-p4',
-    'transition-[background-size] duration-[0.2s] ease-[ease]',
+    'py-[7px] px-[12px]',
+    'rounded-[5px]',
   ],
   {
     variants: {
@@ -40,7 +36,7 @@ const inputCva = cva(
           dfTwMerge(
             cx(
               // border
-              'dark:border-text-text-and-icon',
+              'dark:border-bg-grid-border dark:focus:border-bg-hover-3',
               // bg styles
               // 'bg-gray-50',
               // placeholder styles
