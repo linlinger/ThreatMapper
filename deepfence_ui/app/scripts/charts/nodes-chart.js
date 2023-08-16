@@ -7,17 +7,17 @@ import { K8sView } from '../components/topology-filter-view/k8s-view/k8s-view';
 const menu = [
   {
     id: 'cloud',
-    displayName: 'Multi Cloud view',
+    displayName: '云视图',
     component: CloudView,
   },
   {
     id: 'hosts',
-    displayName: 'Host View',
+    displayName: '主机视图',
     component: HostView,
   },
   {
     id: 'k8s',
-    displayName: 'K8s View',
+    displayName: 'K8S视图',
     component: K8sView,
   },
 ];

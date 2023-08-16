@@ -6,36 +6,36 @@ import { NodeActionModal } from './node-action-modal';
 
 const actionOptionsIndex = fromJS({
   start_vulnerability_scan: {
-    label: 'Start vulnerability scan',
+    label: '开始漏洞扫描',
     onClick: (param, triggerModal) => triggerCVEScanModal(param, triggerModal),
     enabled: false,
   },
   stop_vulnerability_scan: {
-    label: 'Stop vulnerability scan',
+    label: '停止漏洞扫描',
     onClick: (param, triggerModal, dispatch) =>
       triggerStopCVEScanModal(param, triggerModal, dispatch),
     enabled: false,
   },
   start_secrets_scan: {
-    label: 'Start secrets scan',
+    label: '开始密码密钥扫描',
     onClick: (param, triggerModal, dispatch) =>
       triggerStartSecretsScanModal(param, triggerModal, dispatch),
     enabled: false,
   },
   stop_secrets_scan: {
-    label: 'Stop secrets scan',
+    label: '停止密码密钥扫描',
     onClick: (param, triggerModal, dispatch) =>
       triggerStopSecretScanModal(param, triggerModal, dispatch),
     enabled: false,
   },
   start_malware_scan: {
-    label: 'Start malware scan',
+    label: '开始恶意软件扫描',
     onClick: (param, triggerModal, dispatch) =>
       triggerStartMalwareScanModal(param, triggerModal, dispatch),
     enabled: false,
   },
   stop_malware_scan: {
-    label: 'Stop malware scan',
+    label: '停止恶意软件扫描',
     onClick: (param, triggerModal, dispatch) =>
       triggerStopMalwareScanModal(param, triggerModal, dispatch),
     enabled: false,
@@ -93,7 +93,7 @@ const renderModalContent = props => {
 export const triggerCVEScanModal = (selectedDocIndex, triggerModal) => {
   const isCVE = true;
   const modalProps = {
-    title: 'Vulnerability Scan',
+    title: '漏洞扫描',
     modalContent: renderModalContent,
     modalContentProps: {
       selectedDocIndex,
@@ -108,11 +108,11 @@ export const triggerCVEScanModal = (selectedDocIndex, triggerModal) => {
 
 const triggerStopCVEScanModal = (selectedDocIndex, triggerModal, dispatch) => {
   const modalProps = {
-    dialogTitle: 'Stop Vulnerability Scan',
+    dialogTitle: '停止漏洞扫描',
     dialogBody:
-      'This will only stop the scans that are in queued state. It will not stop scans that are currently running. Do you want to continue ?',
-    confirmButtonText: 'Yes',
-    cancelButtonText: 'No',
+      '这只会停止处于队列中的扫描。它不会停止当前正在运行的扫描。是否要继续？',
+    confirmButtonText: '是',
+    cancelButtonText: '否',
     onConfirmButtonClick: paramsIm =>
       bulkStopCVEScan(selectedDocIndex, paramsIm, dispatch),
   };
@@ -122,11 +122,11 @@ const triggerStopCVEScanModal = (selectedDocIndex, triggerModal, dispatch) => {
 
 const triggerStopSecretScanModal = (selectedDocIndex, triggerModal, dispatch) => {
   const modalProps = {
-    dialogTitle: 'Stop Secret Scan',
+    dialogTitle: '停止密码密钥扫描',
     dialogBody:
-      'This will only stop the scans that are in queued state. It will not stop scans that are currently running. Do you want to continue ?',
-    confirmButtonText: 'Yes',
-    cancelButtonText: 'No',
+      '这只会停止处于队列中的扫描。它不会停止当前正在运行的扫描。是否要继续？',
+    confirmButtonText: '是',
+    cancelButtonText: '否',
     onConfirmButtonClick: paramsIm =>
       bulkStopSecretScan(selectedDocIndex, paramsIm, dispatch),
   };
@@ -135,11 +135,11 @@ const triggerStopSecretScanModal = (selectedDocIndex, triggerModal, dispatch) =>
 
 const triggerStopMalwareScanModal = (selectedDocIndex, triggerModal, dispatch) => {
   const modalProps = {
-    dialogTitle: 'Stop Malware Scan',
+    dialogTitle: '停止恶意软件扫描',
     dialogBody:
-      'This will only stop the scans that are in queued state. It will not stop scans that are currently running. Do you want to continue ?',
-    confirmButtonText: 'Yes',
-    cancelButtonText: 'No',
+      '这只会停止处于队列中的扫描。它不会停止当前正在运行的扫描。是否要继续？',
+    confirmButtonText: '是',
+    cancelButtonText: '否',
     onConfirmButtonClick: paramsIm =>
       bulkStopMalwareScan(selectedDocIndex, paramsIm, dispatch),
   };
@@ -148,11 +148,11 @@ const triggerStopMalwareScanModal = (selectedDocIndex, triggerModal, dispatch) =
 
 const triggerStartSecretsScanModal = (selectedDocIndex, triggerModal, dispatch) => {
   const modalProps = {
-    dialogTitle: 'Start Secrets Scan',
+    dialogTitle: '开始密码密钥扫描',
     dialogBody:
-      'Start secrets scan on all selected nodes?',
-    confirmButtonText: 'Start Scan',
-    cancelButtonText: 'Cancel',
+      '是否在所有选择的节点上开始密码密钥扫描？',
+    confirmButtonText: '开始扫描',
+    cancelButtonText: '取消',
     onConfirmButtonClick: () =>
       bulkStartSecretsScan(selectedDocIndex, dispatch),
   };
@@ -161,11 +161,11 @@ const triggerStartSecretsScanModal = (selectedDocIndex, triggerModal, dispatch) 
 
 const triggerStartMalwareScanModal = (selectedDocIndex, triggerModal, dispatch) => {
   const modalProps = {
-    dialogTitle: 'Start Malware Scan',
+    dialogTitle: '开始恶意软件扫描',
     dialogBody:
-      'Start malware scan on all selected nodes?',
-    confirmButtonText: 'Start Scan',
-    cancelButtonText: 'Cancel',
+      '是否在所有选择的节点上开始恶意软件扫描？',
+    confirmButtonText: '开始扫描',
+    cancelButtonText: '取消',
     onConfirmButtonClick: () =>
       bulkStartMalwareScan(selectedDocIndex, dispatch),
   };
@@ -196,7 +196,7 @@ const bulkStartSecretsScan = async (selectedDocIndex, dispatch) => {
       errorCount += node_id_list.length;
     }
   }
-  dispatch(toaster(`Request to start secrets scan on ${successCount} nodes queued successfully${errorCount ? ` , failed on ${errorCount} nodes.` : '.'}`));
+  dispatch(toaster(`成功在 ${successCount} 个节点上开始密码密钥扫描${errorCount ? ` , 在 ${errorCount} 个节点上未能开始扫描。` : '.'}`));
 }
 
 
@@ -224,7 +224,7 @@ const bulkStartMalwareScan = async (selectedDocIndex, dispatch) => {
       errorCount += node_id_list.length;
     }
   }
-  dispatch(toaster(`Request to start malware scan on ${successCount} nodes queued successfully${errorCount ? ` , failed on ${errorCount} nodes.` : '.'}`));
+  dispatch(toaster(`成功在${successCount}个节点上开始恶意软件扫描${errorCount ? ` ,在${errorCount}个节点上未能成功开始扫描` : '.'}`));
 }
 
 const bulkStopCVEScan = async (selectedDocIndex = [], paramsIm = Map(), dispatch) => {
@@ -255,7 +255,7 @@ const bulkStopCVEScan = async (selectedDocIndex = [], paramsIm = Map(), dispatch
       errorCount += node_id_list.length;
     }
   }
-  dispatch(toaster(`Request to stop vulnerability scan on ${successCount} nodes queued successfully${errorCount ? ` , failed on ${errorCount} nodes.` : '.'}`));
+  dispatch(toaster(`成功在${successCount}个节点开始漏洞扫描${errorCount ? ` , 在${errorCount}个节点上未能开始扫描。` : '.'}`));
 };
 
 
@@ -287,7 +287,7 @@ const bulkStopSecretScan = async (selectedDocIndex = [], paramsIm = Map(), dispa
       errorCount += node_id_list.length;
     }
   }
-  dispatch(toaster(`Request to stop secret scan on ${successCount} nodes queued successfully${errorCount ? ` , failed on ${errorCount} nodes.` : '.'}`));
+  dispatch(toaster(`成功在 ${successCount}个节点上停止密码密钥扫描${errorCount ? ` , 未能在${errorCount}个节点上开始扫描` : '.'}`));
 };
 
 
@@ -320,5 +320,5 @@ const bulkStopMalwareScan = async (selectedDocIndex = [], paramsIm = Map(), disp
       errorCount += node_id_list.length;
     }
   }
-  dispatch(toaster(`Request to stop malware scan on ${successCount} nodes queued successfully${errorCount ? ` , failed on ${errorCount} nodes.` : '.'}`));
+  dispatch(toaster(`成功在${successCount}个节点上停止恶意软件扫描${errorCount ? ` , 未能在${errorCount}个节点上开始扫描` : '.'}`));
 };
