@@ -42,9 +42,9 @@ export const AgentSetup = () => {
 
   useEffect(() => {
     if (state.value) {
-      dispatch(toaster('Copied successfully.'));
+      dispatch(toaster('复制成功。'));
     } else if (state.error) {
-      dispatch(toaster('Failed to copy.'));
+      dispatch(toaster('复制失败。'));
     }
   }, [state]);
 
@@ -109,7 +109,7 @@ helm install deepfence-agent deepfence/deepfence-agent \\
 
   return (
     <div className={styles.wrapper}>
-      <p>Please follow the instructions below to set-up deepfence agent.</p>
+      <p>请按照以下步骤设置 agent.</p>
       <div className={styles.setupHeader}>Docker:</div>
       <div className={styles.codeBlock}>
         {getDockerInstructions()}
@@ -119,13 +119,13 @@ helm install deepfence-agent deepfence/deepfence-agent \\
         />
       </div>
       <p>
-        For more details reference our{' '}
+        若要查看agent详细的设置文档，请查看{' '}
         <a
           href="https://community.deepfence.io/threatmapper/docs/v1.5/sensors/docker"
           target="_blank"
           rel="noreferrer"
         >
-          agent installation documentation.
+          
         </a>
       </p>
       <div className={styles.setupHeader}>K8s:</div>
@@ -137,7 +137,7 @@ helm install deepfence-agent deepfence/deepfence-agent \\
                 <div className="col">
                   <div className="form-group">
                     <div className="label">
-                      Enter Cluster Name
+                      输入集群名称
                     </div>
                     <label htmlFor="cluster-name">
                       <input
@@ -160,7 +160,7 @@ helm install deepfence-agent deepfence/deepfence-agent \\
                 <div className="col">
                   <div className="form-group">
                     <div className="label">
-                      Enter Namespace
+                      输入 Namespace
                     </div>
                     <label htmlFor="namespace">
                       <input
@@ -215,7 +215,7 @@ helm install deepfence-agent deepfence/deepfence-agent \\
                   <div className="col">
                     <div className="form-group">
                       <div className="label" htmlFor="dir-sev">
-                        Enter Socket Path
+                        输入 Socket 路径
                       </div>
                       <label htmlFor="socketPath">
                       <input
@@ -247,13 +247,13 @@ helm install deepfence-agent deepfence/deepfence-agent \\
         />
       </div>
       <p>
-        For more details reference our{' '}
+        查看agent安装详细指南，请转至{' '}
         <a
           href="https://community.deepfence.io/threatmapper/docs/v1.5/sensors/kubernetes"
           target="_blank"
           rel="noreferrer"
         >
-          agent installation documentation.
+
         </a>
       </p>
     </div>

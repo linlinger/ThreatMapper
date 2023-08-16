@@ -42,8 +42,7 @@ export const LinuxTerraFormScript = withRouter(() => {
         >
           <div style={{ paddingTop: '17px' }}>
             <p>
-              Please install the deepfence sensors to your Linux VMs to check
-              for compliance misconfigurations
+              请在Linux安装盾杉探针检查错误的合规性配置。
             </p>
           </div>
         </div>

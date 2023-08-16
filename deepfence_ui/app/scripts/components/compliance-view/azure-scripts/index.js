@@ -43,8 +43,7 @@ export const AzureTerraFormScript = withRouter(props => {
         >
           <div style={{ paddingTop: '17px' }}>
             <p>
-              Deploy Deepfence Compliance Scanner with Terraform using the code
-              samples below for a single subscription.
+              使用下面的代码示例在单个订阅的Terraform部署合规性检查扫描器。
               <br/>
               <a target="_blank" rel="noreferrer" href={terraformLink}>{terraformLink}</a>
             </p>

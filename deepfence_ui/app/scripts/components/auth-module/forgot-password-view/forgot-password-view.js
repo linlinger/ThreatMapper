@@ -66,24 +66,24 @@ class ForgotPasswordView extends React.Component {
           <img src={ brandLogo } alt="DeepFence Logo" />
         </div>
         <div className="forgot-password-form-wrapper">
-          <div className="form-heading">Please provide registered emailId</div>
+          <div className="form-heading">请提供注册邮箱</div>
           <form name="form" onSubmit={this.handleSubmit}>
             <div className={'form-group' + (submitted && !email ? ' has-error' : '')}>
               <label htmlFor="email">
                 <i className="fa fa-envelope-o" aria-hidden="true"></i>
                 <input type="email" className="form-control" name="email" placeholder="Email" value={email} onChange={this.handleChange} />
               </label>
-              {submitted && !email && <div className="field-error">Email is required</div>}
+              {submitted && !email && <div className="field-error">需要电子邮件地址</div>}
             </div>
             <div className="error-msg-container">
               {this.state.isError && <div className="auth-error-msg">{this.state.responseMsg}</div>}
               {this.state.isSuccess && <div className="auth-success-msg">{this.state.responseMsg}</div>}
             </div>
             <div className="form-group">
-              <button className="app-btn">Send Link</button>
+              <button className="app-btn">发送链接</button>
             </div>
             <div className="navigation-link-wrapper">
-              <Link className="navigation-link" to="/login">Back to Login</Link>
+              <Link className="navigation-link" to="/login">返回登录</Link>
             </div>
           </form>
         </div>

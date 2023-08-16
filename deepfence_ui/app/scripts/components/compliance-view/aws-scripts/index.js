@@ -51,11 +51,9 @@ export const AwsTerraFormScript = withRouter(props => {
         >
           <div style={{ paddingTop: '17px' }}>
             <p>
-              Deploy all modules for Deepfence Compliance Scanner for a single
-              account.
+              在同一账户内为合规性检查扫描器部署所有模块。
               <br />
-              For information on AWS Organizations and account types, see AWS
-              docs.
+              若要查询AWS的组织和账户类别信息，请查阅AWS文档。
               <br />
             </p>
           </div>
@@ -104,7 +102,7 @@ export const AwsTerraFormScript = withRouter(props => {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    Deploy single AWS account--&gt;{' '}
+                   部署到单个 AWS 账户--&gt;{' '}
                   </a>
                   <br/>
                   <a
@@ -113,7 +111,7 @@ export const AwsTerraFormScript = withRouter(props => {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    Deploy all AWS organization accounts--&gt;{' '}
+                     部署到所有 AWS 组织账户--&gt;{' '}
                   </a>
                 </div>
               )}

@@ -187,7 +187,7 @@ export const AttackGraph = () => {
             {attackGraphDataLoading ? (
               <AppLoader />
             ) : (
-              'No attack paths discovered. Please run Vulnerability/Secret/Compliance scans to discover new attack paths.'
+              '未发现攻击路径。请运行 漏洞/密码密钥/合规性检查 扫描以发现攻击路径'
             )}
           </div>
         ) : null}
@@ -291,9 +291,9 @@ function processData(attackGraphData) {
   const nodesMap = new Map();
   const edgesMap = new Map();
 
-  nodesMap.set('The Internet', {
+  nodesMap.set('互联网', {
     id: 'The Internet',
-    label: 'The Internet',
+    label: '互联网',
     img: getNodeIcon('cloud'),
     type: 'image',
     size: 30,
@@ -308,7 +308,7 @@ function processData(attackGraphData) {
     const cloudRootId = `cloud_root_${cloudKey}`;
     nodesMap.set(cloudRootId, {
       id: cloudRootId,
-      label: cloudKey === 'others' ? 'private cloud' : cloudKey,
+      label: cloudKey === '其他' ? '私有云' : cloudKey,
       complianceCount: cloudObj.compliance_count,
       count: 0,
       nodeType: cloudRootId,
@@ -317,8 +317,8 @@ function processData(attackGraphData) {
       img: getAssetIcon(cloudRootId),
       nonInteractive: true,
     });
-    edgesMap.set(`The Internet<->${cloudRootId}`, {
-      source: 'The Internet',
+    edgesMap.set(`互联网<->${cloudRootId}`, {
+      source: '互联网',
       target: cloudRootId,
     });
     cloudObj?.resources?.forEach(singleGraph => {
@@ -334,7 +334,7 @@ function processData(attackGraphData) {
             }
             if (index) {
               let prev = path[index - 1];
-              if (prev === 'The Internet') prev = cloudRootId;
+              if (prev === '互联网') prev = cloudRootId;
               if (!edgesMap.has(`${prev}<->${node}`)) {
                 edgesMap.set(`${prev}<->${node}`, {
                   source: prev,

@@ -100,9 +100,9 @@ class SearchBox extends React.Component {
     }
     return (
         <div className="search-container">
-          <input className="search-input" placeholder="Search..."
-                 onFocus={(e) => e.target.placeholder = 'Search (Supports Lucene Syntax)'}
-                 onBlur={(e) => e.target.placeholder = 'Search...'}
+          <input className="search-input" placeholder="搜索..."
+                 onFocus={(e) => e.target.placeholder = '搜索 (支持 Lucene 语法)'}
+                 onBlur={(e) => e.target.placeholder = '搜索...'}
                  onKeyPress={(e) => this.keyPressHandler(e)} onChange={(e) => this.changeHandler(e)}
                  value={this.state.searchBarValue}/>
           {error}

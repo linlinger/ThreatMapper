@@ -11,7 +11,7 @@ const BubbleChart = props => {
 
   const [plotData, setPlotData] = useState(null);
 
-  const severity = ['vulnerabilities', 'low', 'medium', 'high', 'critical'];
+  const severity = ['漏洞', '低', '中', '高', '严重'];
 
   const container = useRef(null);
   useEffect(() => {
@@ -55,7 +55,7 @@ const BubbleChart = props => {
         },
         customContent: (title, data)  => {
           if(data[0]?.name === 'vulnerabilities') {
-            return `Most Exploitable Vunlerabilities : ${data[0]?.value}` ;
+            return `最可被利用的漏洞 : ${data[0]?.value}` ;
           }
           return `${data[0]?.name} : ${data[0]?.value}`;
         }

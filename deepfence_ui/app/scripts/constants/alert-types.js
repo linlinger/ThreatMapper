@@ -1,5 +1,5 @@
 // SEVERITY
-export const CRITICAL_ALERT = '关键';
+export const CRITICAL_ALERT = '严重';
 export const HIGH_ALERT = '高';
 export const MEDIUM_ALERT = '中';
 export const LOW_ALERT = '低';

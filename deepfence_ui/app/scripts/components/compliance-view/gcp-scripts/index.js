@@ -43,8 +43,7 @@ export const GcpTerraFormScript = withRouter(props => {
         >
           <div style={{ paddingTop: '17px' }}>
             <p>
-              Deploy Deepfence Compliance Scanner with Terraform using the code
-              samples below for a single project.
+              使用下面的代码示例在单个项目的Terraform部署合规性检查扫描器。
               <br/>
               <a target="_blank" rel="noreferrer" href={terraformLink}>{terraformLink}</a>
             </p>

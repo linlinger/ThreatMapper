@@ -18,7 +18,7 @@ export const NODE_TYPE_DROPDOWN = {
 export const ALERT_TYPE_RADIO_BUTTON_COLLECTION = {
   heading: '',
   options: [
-    { name: '关键', value: 'critical' },
+    { name: '严重', value: 'critical' },
     { name: '高', value: 'high' },
     { name: '中', value: 'medium' },
     { name: '低', value: 'low' },

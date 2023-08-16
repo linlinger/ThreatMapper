@@ -3,11 +3,11 @@
 import dfStyle from '../../styles/_deepfence.scss';
 
 export const SEVERITY = {
-  CRITICAL: 'critical',
-  HIGH: 'high',
-  MEDIUM: 'medium',
-  LOW: 'low',
-  INFO: 'info',
+  CRITICAL: '严重',
+  HIGH: '高',
+  MEDIUM: '中',
+  LOW: '低',
+  INFO: '信息',
 };
 
 export const sevColors = {

@@ -23,8 +23,8 @@ export const CONTENT_COVERING = 'content-covering';
 //
 // DeepFence Variables
 //
-export const CRITICAL_SEVERITY = '关键';
-export const CRITICAL_SEVERITY_CLASS = '关键严重性';
+export const CRITICAL_SEVERITY = '严重';
+export const CRITICAL_SEVERITY_CLASS = '严重';
 export const HIGH_SEVERITY = '高';
 export const HIGH_SEVERITY_CLASS = '高严重性';
 export const MEDIUM_SEVERITY = '中';

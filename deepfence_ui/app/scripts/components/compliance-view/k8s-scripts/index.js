@@ -43,7 +43,7 @@ export const K8sTerraFormScript = withRouter(() => {
         >
           <div style={{ paddingTop: '17px' }}>
             <p>
-              Please install the deepfence-k8s-scanner helm chart to your Kubernetes cluster to check for compliance misconfigurations
+              请在你的 Kubernetes 集群安装deepfence-k8s-scanner以检查错误的合规性配置。
               <br/>
               <a target="_blank" rel="noreferrer" href={docsLink}>
                 {docsLink}
