@@ -8,15 +8,15 @@ export const CVE_BUBBLE_CHART_UPPER_BOUND_LIMIT = 750;
 export const RESOURCE_BUBBLE_CHART_UPPER_BOUND_LIMIT = 300;
 export const BUBBLE_DEFAULT_RADIUS = 1;
 export const FEATURE_BLOCKED_ALERT_MESSAGE = {
-  message: 'This is a Demo account, not all features are enabled. Please contact support@deepfence.io for subscription'
+  message: '这是一个未启用全部特性的演示。请联系相关人员获取订阅。'
 };
 export const NO_INTEGRATION_FOUND_ALERT_MESSAGE = {
-  message: 'No Integrations Found'
+  message: '未发现集成'
 };
 export const NO_DONUT_DETAILS_AVAILABLE = {
-  message: 'No specific alerts found for this container, please check host alerts.'
+  message: '未在此容器内发现特定警告，请检查主机警告。'
 };
 export const NO_MAIL_CONFIGURATIONS_MESSAGE = {
-  message: 'No Mail Configurations Found.'
+  message: '未发现邮件配置。'
 };
 /* END :: VISUALIZATION CONFIG VARIABLES */

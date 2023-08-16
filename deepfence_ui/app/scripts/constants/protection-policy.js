@@ -1,4 +1,4 @@
-export const PROTECTION_POLICY_TYPE_QUARANTINE = 'quarantine';
-export const PROTECTION_POLICY_TYPE_NETWORK = 'network';
-export const NODE_NETWORK_POLICY_TYPE_BLACKLIST = 'blacklist';
-export const NODE_NETWORK_POLICY_TYPE_WHITELIST = 'whitelist';
+export const PROTECTION_POLICY_TYPE_QUARANTINE = '隔离';
+export const PROTECTION_POLICY_TYPE_NETWORK = '网络';
+export const NODE_NETWORK_POLICY_TYPE_BLACKLIST = '黑名单';
+export const NODE_NETWORK_POLICY_TYPE_WHITELIST = '白名单';

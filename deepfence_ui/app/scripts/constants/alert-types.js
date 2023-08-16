@@ -1,11 +1,11 @@
 // SEVERITY
-export const CRITICAL_ALERT = 'critical';
-export const HIGH_ALERT = 'high';
-export const MEDIUM_ALERT = 'medium';
-export const LOW_ALERT = 'low';
-export const INFO_ALERT = 'info';
-export const DEFAULT = 'default';
+export const CRITICAL_ALERT = '关键';
+export const HIGH_ALERT = '高';
+export const MEDIUM_ALERT = '中';
+export const LOW_ALERT = '低';
+export const INFO_ALERT = '信息';
+export const DEFAULT = '默认';
 
 // TYPES
-export const NETWORK_ANOMALY = 'network_anomaly';
-export const BEHAVIORAL_ANOMALY = 'behavioral_anomaly';
+export const NETWORK_ANOMALY = '网络异常';
+export const BEHAVIORAL_ANOMALY = '行为异常';

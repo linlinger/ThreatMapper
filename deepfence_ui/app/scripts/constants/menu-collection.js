@@ -56,55 +56,55 @@ export const INTEGRATION_MENU_COLLECTION = [
 
 export const ADMIN_SIDE_NAV_MENU_COLLECTION = [
   {
-    name: 'Topology', menuIcon: 'icon-Topology', isActive: true, link: '/topology'
+    name: '拓补', menuIcon: 'icon-Topology', isActive: true, link: '/topology'
   },
   {
-    name: 'Threat Graph', menuIcon: 'nav-icon-attack-graph', isActive: true, link: '/threat-graph'
+    name: '威胁表', menuIcon: 'nav-icon-attack-graph', isActive: true, link: '/threat-graph'
   },
   {
-    name: 'Vulnerabilities', menuIcon: 'icon-biohazard', isActive: false, link: '/vulnerability'
+    name: '漏洞', menuIcon: 'icon-biohazard', isActive: false, link: '/vulnerability'
   },
   {
-    name: 'Secrets', menuIcon: "nav-icon-secret", isActive: false, link: '/secret-scan'
+    name: '密钥', menuIcon: "nav-icon-secret", isActive: false, link: '/secret-scan'
   },
   {
-    name: 'Malwares', menuIcon: "nav-icon-malware", isActive: false, link: '/malware-scan'
+    name: '恶意软件', menuIcon: "nav-icon-malware", isActive: false, link: '/malware-scan'
   },
   {
     name: 'Posture', menuIcon: 'icon-compliance', isActive: false, link: '/compliance'
   },
   {
-    name: 'Registries', menuIcon: 'icon-containers', isActive: false, link: '/registry_vulnerability_scan'
+    name: '镜像源', menuIcon: 'icon-containers', isActive: false, link: '/registry_vulnerability_scan'
   },
   {
-    name: 'Integrations', menuIcon: 'icon-notification', isActive: false, link: '/notification'
+    name: '集成', menuIcon: 'icon-notification', isActive: false, link: '/notification'
   },
 ];
 
 export const USER_SIDE_NAV_MENU_COLLECTION = [
   {
-    name: 'Topology', menuIcon: 'icon-Topology', isActive: true, link: '/topology'
+    name: '拓补', menuIcon: 'icon-Topology', isActive: true, link: '/topology'
   },
   {
-    name: 'Threat Graph', menuIcon: 'nav-icon-attack-graph', isActive: true, link: '/threat-graph'
+    name: '威胁表', menuIcon: 'nav-icon-attack-graph', isActive: true, link: '/threat-graph'
   },
   {
-    name: 'Vulnerabilities', menuIcon: 'icon-biohazard', isActive: false, link: '/vulnerability'
+    name: '漏洞', menuIcon: 'icon-biohazard', isActive: false, link: '/vulnerability'
   },
   {
-    name: 'Secrets', menuIcon: "nav-icon-secret", isActive: false, link: '/secret-scan'
+    name: '密钥', menuIcon: "nav-icon-secret", isActive: false, link: '/secret-scan'
   },
   {
-    name: 'Malwares', menuIcon: "nav-icon-malware", isActive: false, link: '/malware-scan'
+    name: '恶意软件', menuIcon: "nav-icon-malware", isActive: false, link: '/malware-scan'
   },
   {
     name: 'Posture', menuIcon: 'icon-compliance', isActive: false, link: '/compliance'
   },
   {
-    name: 'Registries', menuIcon: 'icon-containers', isActive: false, link: '/registry_vulnerability_scan'
+    name: '镜像源', menuIcon: 'icon-containers', isActive: false, link: '/registry_vulnerability_scan'
   },
   {
-    name: 'Integrations', menuIcon: 'icon-notification', isActive: false, link: '/notification'
+    name: '集成', menuIcon: 'icon-notification', isActive: false, link: '/notification'
   },
 ];
 

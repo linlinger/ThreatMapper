@@ -1,16 +1,16 @@
 export const POLICY_ACTION_DROPDOWN = {
-  heading: 'choose action',
+  heading: '选择操作',
   options: [
-    { id: 1, display: 'Restart', value: 'restart' },
-    { id: 2, display: 'Stop', value: 'stop' },
-    { id: 3, display: 'Pause', value: 'pause' },
+    { id: 1, display: '重启', value: 'restart' },
+    { id: 2, display: '停止', value: 'stop' },
+    { id: 3, display: '暂停', value: 'pause' },
   ],
 };
 
 export const NODE_TYPE_DROPDOWN = {
-  heading: 'choose node type',
+  heading: '选择节点类型',
   options: [
-    { id: 1, display: 'Container', value: 'container' },
+    { id: 1, display: '容器', value: 'container' },
     { id: 3, display: 'Pod', value: 'pod' },
   ],
 };
@@ -18,110 +18,110 @@ export const NODE_TYPE_DROPDOWN = {
 export const ALERT_TYPE_RADIO_BUTTON_COLLECTION = {
   heading: '',
   options: [
-    { name: 'Critical', value: 'critical' },
-    { name: 'High', value: 'high' },
-    { name: 'Medium', value: 'medium' },
-    { name: 'Low', value: 'low' },
+    { name: '关键', value: 'critical' },
+    { name: '高', value: 'high' },
+    { name: '中', value: 'medium' },
+    { name: '低', value: 'low' },
   ],
 };
 
 export const CLOUD_PROVIDER_DROP_DOWN_COLLECTION = {
   heading: '',
   options: [
-    { id: 1, name: 'Aws', value: 'aws' },
-    { id: 2, name: 'Google Cloud', value: 'gce' },
-    { id: 3, name: 'Azure', value: 'azure' },
+    { id: 1, name: '亚马逊AWS', value: 'aws' },
+    { id: 2, name: '谷歌云', value: 'gce' },
+    { id: 3, name: '微软Azure', value: 'azure' },
   ],
 };
 
 export const DURATION_DROPDOWN_COLLECTION = {
-  heading: 'Select Interval',
+  heading: '选择间隔',
   options: [
     {
       id: 1,
       value: '-1',
       time_unit: 'minute',
-      display: 'immediate',
+      display: '实时',
     },
     {
       id: 2,
       value: '5',
       time_unit: 'minute',
-      display: 'every 5 minute',
+      display: '每5分钟',
     },
     {
       id: 3,
       value: '15',
       time_unit: 'minute',
-      display: 'every 15 minute',
+      display: '每15分钟',
     },
     {
       id: 4,
       value: '30',
       time_unit: 'minute',
-      display: 'every 30 minute',
+      display: '每30分钟',
     },
     {
       id: 5,
       value: '60',
       time_unit: 'minute',
-      display: 'every 60 minute',
+      display: '每60分钟',
     },
   ],
 };
 
 export const NOTIFICATION_RESOURCE_OPTIONS = [
   {
-    label: 'Vulnerabilities',
+    label: '漏洞',
     value: 'vulnerability',
   },
   {
-    label: 'Compliance Results',
+    label: '合规检查结果',
     value: 'compliance',
   },
   {
-    label: 'User Activities',
+    label: '用户活动',
     value: 'user_activity',
   },
   {
-      label: 'Malware Scan',
+      label: '恶意软件扫描',
     value: 'malware-scan',
   },
   {
-    label: 'Secret Scan',
+    label: '密码密钥扫描',
     value: 'secret-scan',
   },
 ];
 
 export const NOTIFICATION_RESOURCE_OPTIONS_CLOUDTRAIL = [
   {
-    label: 'Vulnerabilities',
+    label: '漏洞',
     value: 'vulnerability',
   },
   {
-    label: 'Compliance Results',
+    label: '合规检查结果',
     value: 'compliance',
   },
   {
-    label: 'User Activities',
+    label: '用户活动',
     value: 'user_activity',
   },
   {
-    label: 'CloudTrail Alerts',
+    label: 'CloudTrail告警',
     value: 'cloudtrail_alert',
   },
   {
-    label: 'Malware Scan',
+    label: '恶意软件扫描',
     value: 'malware-scan',
   },
   {
-    label: 'Secret Scan',
+    label: '密码密钥扫描',
     value: 'secret-scan',
   }
 ];
 
 export const REGION_OPTIONS = {
-  heading: 'Select Region',
+  heading: '选择地区',
   options: [
     {
       value: 'us-east-1',
