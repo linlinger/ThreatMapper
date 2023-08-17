@@ -118,7 +118,7 @@ export const StartScanModalContent = props => {
               startScan();
             }}
           >
-            Start Scan
+            开始扫描
           </button>
         </div>
       </div>
@@ -227,7 +227,7 @@ export const ComplianceTypeTabs = props => {
               className={classNames(styles.addTabButton, styles.unstyledButton)}
             >
               <i className={classNames('fa fa-plus')} />
-              &nbsp; Add
+              &nbsp; 添加
             </button>
           </Tippy>
         </div>
@@ -246,7 +246,7 @@ const NoSelectionText = () => {
         minHeight: '250px',
       }}
     >
-      Please select at-least one check type using &quot;Add&quot; button above.
+      请至少使用上方的 &quot;Add&quot; 选择一项。
     </div>
   );
 };

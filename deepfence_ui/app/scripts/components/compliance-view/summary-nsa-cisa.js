@@ -35,8 +35,8 @@ class CISSummary extends React.PureComponent {
       <div>
         <div className="chart-wrapper top-wrapper">
           <div className="chart-heading">
-            <h4>Compliance tests</h4>
-            <h5>Overview of the overall compliance</h5>
+            <h4>合规性测试</h4>
+            <h5>整体合规性概述</h5>
           </div>
           {scanTimeStamp !== undefined &&
             <div style={{display: 'flex', flexDirection: 'row-reverse', paddingTop: '23px'}}>Last scanned on {dateTimeFormat(scanTimeStamp)}</div>

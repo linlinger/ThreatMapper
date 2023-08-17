@@ -37,10 +37,10 @@ class HostReportRowDetail extends React.PureComponent {
 
   handleDeleteDialogScans(scanId) {
     const params = {
-      dialogTitle: 'Delete Results ?',
-      dialogBody: 'Are you sure you want to delete?',
-      confirmButtonText: 'Yes',
-      cancelButtonText: 'No',
+      dialogTitle: '删除结果 ?',
+      dialogBody: '确认删除?',
+      confirmButtonText: '是',
+      cancelButtonText: '否',
       onConfirmButtonClick: () => this.deleteScanActions(scanId),
       contentStyles: {
         width: '375px',
@@ -75,15 +75,15 @@ class HostReportRowDetail extends React.PureComponent {
     const successHandler = response => {
       const { success, error: apiError } = response;
       if (success) {
-        this.props.dispatch(toaster('Successfully deleted'));
+        this.props.dispatch(toaster('删除成功'));
         setTimeout(this.props.onDelete, 2000);
       } else {
-        this.props.dispatch(toaster(`ERROR: ${apiError.message}`));
+        this.props.dispatch(toaster(`错误: ${apiError.message}`));
       }
     };
     const apiErrorHandler = () => {
-      this.props.dispatch(toaster('Something went wrong'));
-    };
+      this.props.dispatch(toaster('出错'));
+    };o
     return this.props
       .dispatch(deleteScanActions(params))
       .then(successHandler, apiErrorHandler);
@@ -118,12 +118,12 @@ class HostReportRowDetail extends React.PureComponent {
           }}
           columns={[
             {
-              Header: 'Timestamp',
+              Header: '时间戳',
               accessor: row => dateTimeFormat(row.time_stamp),
               id: 'timestamp',
             },
             {
-              Header: 'Status',
+              Header: '状态',
               accessor: 'scan_status',
               Cell: cell => (
                 <div
@@ -138,7 +138,7 @@ class HostReportRowDetail extends React.PureComponent {
               ),
             },
             {
-              Header: 'Compliance %',
+              Header: '合规性 %',
               id: 'compliancePercentage',
               maxWidth: 40,
               width: 40,

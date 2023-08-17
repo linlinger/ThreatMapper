@@ -74,7 +74,7 @@ const ComplianceTable = withRouter(props => {
   const handleViewRules = cell => {
     const { triggerModal, cloudType } = props;
     triggerModal('GENERIC_MODAL', {
-      title: `Start Compliance Scan`,
+      title: `开始合规性扫描`,
       modalContent: () =>
         renderModalContent(cloudType, cell.row.original.node_id),
       onHide: () => {
@@ -91,7 +91,7 @@ const ComplianceTable = withRouter(props => {
     disableRefreshFor(nodeId);
     dispatch(refreshCloudComplianceResourcesAction({ nodeId }));
     dispatch(
-      toaster('Refreshing cloud inventory. This can take up to a minute...')
+      toaster('正在刷新云资产，这可能需要一分钟...')
     );
   };
 
@@ -142,7 +142,7 @@ const AccountListTable = ({
   return (
     <DfTableV2
       noMargin
-      noDataText="No accounts are configured, please use instructions above to setup an account."
+      noDataText="未配置账户,请根据以上指南完成账户设置步骤."
       data={nodes}
       hideExpander
       renderRowSubComponent={({ row: { original } }) => {
@@ -282,8 +282,8 @@ const AccountListTable = ({
                     onClick={e => e.stopPropagation()}
                     title={
                       !cell.row.original.last_scanned_ts
-                        ? 'Account has never been scanned'
-                        : `Last scanned at ${cell.row.original.last_scanned_ts}`
+                        ? '已扫描账户'
+                        : `上次扫描： ${cell.row.original.last_scanned_ts}`
                     }
                   >
                     <i
@@ -307,7 +307,7 @@ const AccountListTable = ({
                         disabled={!cell.row.original.enabled}
                         title={
                           cell.row.original.enabled === false
-                            ? 'Account is inactive'
+                            ? '账户处于非活跃状态'
                             : ''
                         }
                       >
@@ -334,7 +334,7 @@ const AccountListTable = ({
                       }
                       title={
                         cell.row.original.enabled === false
-                          ? 'Account is inactive'
+                          ? '账户处于非活跃状态'
                           : ''
                       }
                     >

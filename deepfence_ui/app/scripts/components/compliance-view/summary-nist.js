@@ -7,38 +7,38 @@ import { dateTimeFormat } from '../../utils/time-utils';
 
 const testValueConfigCloud = [
   {
-    display: 'Alarm',
+    display: '警报',
     value: 'alarm',
   },
   {
-    display: 'Info',
+    display: '信息',
     value: 'info',
   },
   {
-    display: 'Ok',
+    display: '好',
     value: 'ok',
   },
   {
-    display: 'Skip',
+    display: '跳过',
     value: 'skip',
   },
 ];
 
 const testValueConfigHosts = [
   {
-    display: 'Info',
+    display: '信息',
     value: 'info',
   },
   {
-    display: 'Note',
+    display: '备注',
     value: 'note',
   },
   {
-    display: 'Pass',
+    display: '通过',
     value: 'pass',
   },
   {
-    display: 'Warn',
+    display: '警告',
     value: 'warn',
   },
 ];
@@ -64,11 +64,11 @@ class NISTSummary extends React.PureComponent {
       <div>
         <div className="chart-wrapper top-wrapper">
           <div className="chart-heading">
-            <h4>Compliance tests</h4>
-            <h5>Overview of the overall compliance</h5>
+            <h4>合规性测试</h4>
+            <h5>整体合规性概述</h5>
           </div>
           {scanTimeStamp !== undefined &&
-            <div style={{display: 'flex', flexDirection: 'row-reverse', paddingTop: '23px'}}>Last scanned on {dateTimeFormat(scanTimeStamp)}</div>
+            <div style={{display: 'flex', flexDirection: 'row-reverse', paddingTop: '23px'}}>上次扫描于 {dateTimeFormat(scanTimeStamp)}</div>
           }
           <div className="report">
             <div className="total-test-report">

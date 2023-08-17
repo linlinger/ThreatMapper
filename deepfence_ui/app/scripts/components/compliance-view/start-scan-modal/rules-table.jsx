@@ -54,29 +54,29 @@ class RulesTable extends React.Component {
     const { registerActions } = this.props;
     const actionList = [
       {
-        name: 'Enable',
+        name: '启用',
         icon: <i className="fa fa-eye cursor" />,
         onClick: this.enableRules,
         postClickSuccess: this.getComplianceTests,
         showConfirmationDialog: false,
         confirmationDialogParams: {
-          dialogTitle: 'Enable Rule?',
-          dialogBody: 'Are you sure you want to Enable the selected rule?',
-          confirmButtonText: 'Yes, Enable',
-          cancelButtonText: 'No, Keep',
+          dialogTitle: '启用规则?',
+          dialogBody: '是否确认启用选定的规则？',
+          confirmButtonText: '是，启用',
+          cancelButtonText: '否，保留',
         },
       },
       {
-        name: 'Disable',
+        name: '禁用',
         icon: <i className="fa fa-eye-slash cursor" />,
         onClick: this.disableRules,
         postClickSuccess: this.getComplianceTests,
         showConfirmationDialog: false,
         confirmationDialogParams: {
-          dialogTitle: 'Disable Rule?',
-          dialogBody: 'Are you sure you want to Disable the selected rule?',
-          confirmButtonText: 'Yes, Disable',
-          cancelButtonText: 'No, Keep',
+          dialogTitle: '禁用规则?',
+          dialogBody: '是否确认禁用选中的规则？',
+          confirmButtonText: '是，禁用',
+          cancelButtonText: '否，保留',
         },
       },
     ];
@@ -166,8 +166,8 @@ class RulesTable extends React.Component {
             name="searchInput"
             value={searchInput || ''}
             onChange={this.handleChange}
-            label="Search"
-            placeholder="Search"
+            label="搜索"
+            placeholder="搜索"
           />
         </div>
         <DFTable
@@ -193,24 +193,24 @@ class RulesTable extends React.Component {
               maxWidth: 100,
             },
             {
-              Header: 'Category',
+              Header: '分类',
               accessor: 'test_category',
               maxWidth: 250,
             },
             {
-              Header: 'Description',
+              Header: '描述',
               accessor: 'test_desc',
               minWidth: 300,
             },
             {
-              Header: 'Status',
+              Header: '状态',
               id: 'status',
               maxWidth: 100,
               accessor: row => {
                 if (row.is_enabled) {
-                  return 'Active';
+                  return '活动';
                 }
-                return 'Inactive';
+                return '不活动';
               },
             },
             multiSelectColumn,
@@ -249,7 +249,7 @@ export default connect(mapStateToProps, {
   withMultiSelectColumn({
     name: 'compliance-tests',
     column: {
-      name: 'Action',
+      name: '动作',
       accessor: 'id',
       maxWidth: 140,
     },

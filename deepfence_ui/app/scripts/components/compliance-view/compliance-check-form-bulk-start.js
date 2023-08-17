@@ -10,7 +10,7 @@ import {
 const COMPLIANCE_SCAN_MENU = [
   {
     code: 'standard',
-    label: 'System Hardening',
+    label: '系统加固',
   },
   {
     code: 'cis',
@@ -34,7 +34,7 @@ const COMPLIANCE_SCAN_MENU = [
   },
   {
     code: 'mission_critical_classified',
-    label: 'NIST Mission Critical',
+    label: 'NIST关键任务',
   },
 ];
 
@@ -48,8 +48,8 @@ const validate = (valuesIm) => {
   } = formValues;
   const checkTypesChecked = Object.keys(checkTypes).filter(el => checkTypes[el]);
   if (checkTypesChecked.length === 0) {
-    errors._error = 'Select atleast one compliance checktype';
-    errors.mission_critical_classified = 'Select atleast one';
+    errors._error = '请至少选择一个合规性检查项目';
+    errors.mission_critical_classified = '请至少选择一个';
   }
   if (scheduleInterval) {
     errors.dummy = 'dummy';
@@ -113,7 +113,7 @@ class ComplianceCheckForm extends React.PureComponent {
       error,
       scheduleInterval,
     } = this.props;
-    const scanButtonLabel = scheduleInterval ? 'Schedule Scan' : 'Scan Now';
+    const scanButtonLabel = scheduleInterval ? '预约扫描' : '立即扫描';
     const complianceScanMasterIndex = COMPLIANCE_SCAN_MENU.reduce((acc, scan) => {
       acc[scan.code] = {
         ...scan,

@@ -6,7 +6,7 @@ class ComplianceTestCategoryReportContainer extends React.PureComponent {
     const { nodeId, checkType, cloudType, ...rest } = this.props;
     return (
       <div>
-        <div className="cis-title">Compliance scan summary</div>
+        <div className="cis-title">合规性扫描总结</div>
         <ComplianceTestCategoryReport
           nodeId={nodeId}
           checkType={checkType}

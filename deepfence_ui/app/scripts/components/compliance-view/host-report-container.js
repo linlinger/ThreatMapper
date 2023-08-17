@@ -36,7 +36,7 @@ const HostReportContainer = props => {
     };
 
     const generateReport = dispatch(reportGenerateAction(apiParams));
-    dispatch(toaster('Generating Report ...'));
+    dispatch(toaster('生成报告中...'));
     generateReport.then(res => {
       if (res.success) {
         const fetchReportStatus = dispatch(reportDownloadStatusAction());
@@ -54,25 +54,25 @@ const HostReportContainer = props => {
               );
               await downloadReport.then(res => {
                 if (!res) {
-                  dispatch(toaster('Dowloading ...'));
+                  dispatch(toaster('正在下载 ...'));
                   tries = 3;
                 } else if (tries + 1 < totalTries) {
-                  dispatch(toaster('File not generated yet, Trying again ..'));
+                  dispatch(toaster('文件未生成，重试中 ..'));
                   tries = tries + 1;
                 } else {
-                  dispatch(toaster('File not available, Try again Later'));
-                  dispatch(toaster('File generation failed, Try again later'));
+                  dispatch(toaster('文件不可用，请稍后重试'));
+                  dispatch(toaster('文件生成失败，请稍后重试'));
                   tries = tries + 1;
                 }
               });
               // ==========================
             }
           } else {
-            dispatch(toaster('Report generation status failed'));
+            dispatch(toaster('报告生成状态失败'));
           }
         });
       } else {
-        dispatch(toaster('Generation failed'));
+        dispatch(toaster('生成失败'));
       }
     });
   };

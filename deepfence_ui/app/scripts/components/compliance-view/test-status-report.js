@@ -94,7 +94,7 @@ class ComplianceTestStatusReport extends React.PureComponent {
     return (
       <div>
         <div className="cis-title">{title}</div>
-        {emptyData && <div className="absolute-center">No Data Available</div>}
+        {emptyData && <div className="absolute-center">无数据</div>}
         {isLoading === true ? (
           <AppLoader />
         ) : (
