@@ -151,7 +151,7 @@ const processSankeyDataRaw = (rawCVE, rawAlerts) => {
 export const AlertCorrelationView = (props) => {
 
   const renderColumnLabels = () => {
-    const labels = ['Vulnerabilities', 'Severity', 'Alert Direction', 'Resource Type', 'Attack Classtype'];
+    const labels = ['漏洞', '严重性', '警报方向', '资源类型', '攻击类型'];
     return (
       <div className="sankey-column-labels">
         {labels.map(label => (
@@ -192,7 +192,7 @@ export const AlertCorrelationView = (props) => {
       {renderColumnLabels()}
       <SankeyChart
         data={finalData}
-        name="Alerts"
+        name="警报"
       />
     </div>
   );

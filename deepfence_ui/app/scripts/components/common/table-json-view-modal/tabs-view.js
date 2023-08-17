@@ -71,10 +71,10 @@ class Tabs extends React.Component {
       toaster,
     } = this.props;
     navigator.clipboard.writeText(JSON.stringify(doc)).then(() => {
-      toaster('JSON copied to clipboard');
+      toaster('JSON 已复制到剪贴板');
     }, (error) => {
       console.log(error);
-      toaster('ERROR: There was an error copying to the clipboard');
+      toaster('错误: 复制到剪贴板时出错');
     });
   }
 

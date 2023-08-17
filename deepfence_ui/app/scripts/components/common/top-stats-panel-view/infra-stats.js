@@ -67,7 +67,7 @@ class InfraStats extends React.Component {
     if (window.location.hash === '#/notification') {
       return (
         <div className="dashbord-link" onClick={this.goBackToIntegrations} style={{cursor: 'pointer'}} aria-hidden="true">
-          {this.props.changeIntegration ? (<span className="dashboard-breadcrumb" style={{marginRight: '2px', color: '#007BFF'}}> Integrations</span>) : (<span>Integrations</span>)}
+          {this.props.changeIntegration ? (<span className="dashboard-breadcrumb" style={{marginRight: '2px', color: '#007BFF'}}> 集成</span>) : (<span>集成</span>)}
           {this.props.changeIntegration && <img src={DROPDOWN_IMAGE} alt="breadcrumb" style={{marginRight: '2px'}} />}
           {this.props.integrationName}
         </div>

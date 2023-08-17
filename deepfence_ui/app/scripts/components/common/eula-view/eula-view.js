@@ -31,7 +31,7 @@ class EULAView extends React.Component {
     return (
       <div className="container eula-view-wrapper">
         <div className="eula-text-wrapper">
-          <div className="eula-heading">end user licence agreement</div>
+          <div className="eula-heading">最终用户许可协议</div>
           <div className="eula-content">{this.state.eulaContent}</div>
         </div>
       </div>

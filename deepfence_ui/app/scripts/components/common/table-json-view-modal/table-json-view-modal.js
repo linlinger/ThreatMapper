@@ -32,14 +32,14 @@ class TableJSONViewModal extends React.Component {
     const { saveClusteringRuleAction, toaster } = this.props;
     saveClusteringRuleAction(params).then((response) => {
       if (response && response.success) {
-        toaster('Rule Saved Successfully');
+        toaster('规则保存成功');
       } else {
         const {
           error: {
             message,
           } = {}
         } = response;
-        const errorMessage = message ? `Error saving rule: ${message}` : 'Something went wrong while saving rule';
+        const errorMessage = message ? `保存规则时出错: ${message}` : '保存规则时出错';
         toaster(errorMessage);
       }
     });
@@ -48,14 +48,14 @@ class TableJSONViewModal extends React.Component {
   unmaskDocs(params) {
     const { unmaskAlertRuleAction, toaster } = this.props;
     unmaskAlertRuleAction(params).then(() => {
-      toaster('Your preference to enable current alert rule was saved successfully');
+      toaster('您启用当前警报规则的首选项已成功保存');
     }, (error) => {
       const {
         error: {
           message,
         } = {}
       } = error;
-      const errorMessage = message ? `Error saving preference: ${message}` : 'Something went wrong while saving your preference';
+      const errorMessage = message ? `保存首选项时出错: ${message}` : '保存您的首选项时发生了错误';
       toaster(errorMessage);
     });
   }
@@ -64,14 +64,14 @@ class TableJSONViewModal extends React.Component {
     const { maskDocsAction, toaster } = this.props;
     maskDocsAction(params).then((response) => {
       if (response && response.success) {
-        toaster('Your preference to disable current alert rule was saved successfully');
+        toaster('您启用当前警报规则的首选项已成功保存');
       } else {
         const {
           error: {
             message,
           } = {},
         } = response;
-        const errorMessage = message ? `Error saving preference: ${message}` : 'Something went wrong while saving your preference';
+        const errorMessage = message ? `保存首选项时出错: ${message}` : '保存您的首选项时发生了错误';
         toaster(errorMessage);
       }
     }, (httpResponse) => {
@@ -81,7 +81,7 @@ class TableJSONViewModal extends React.Component {
           message,
         } = {},
       } = response;
-      const errorMessage = message ? `Error saving preference: ${message}` : 'Something went wrong while saving your preference';
+      const errorMessage = message ? `保存首选项时出错: ${message}` : '保存您的首选项时发生了错误';
       toaster(errorMessage);
     });
   }
@@ -139,7 +139,7 @@ class TableJSONViewModal extends React.Component {
                   />
                 </div>
                 {showCorrelation && <div className="alert-modal-chart-view">
-                  <div className="alert-modal-title"> Alerts Correlation </div>
+                  <div className="alert-modal-title"> 警报关联 </div>
                   <div className="alert-modal-chart">
                     <AlertCorrelationView
                       data={correlationData}

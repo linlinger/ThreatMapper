@@ -24,34 +24,34 @@ class IntegrationTableView extends React.Component {
     return (
       <tr style={{ border: 'none' }}>
         <th>status</th>
-        {record.notification_type && <th style={{minWidth: '180px'}}> Resource </th>}
-        {record.email && <th>Email</th>}
-        {record.channel && <th>Channel</th>}
-        {record.webhook_url && <th>Webhook url</th>}
-        {record.service_key && <th>Integration key</th>}
-        {record.access_token && <th>Access Token</th>}
-        {record.node_type && <th>Node Type</th>}
-        {record.alert_level != undefined && <th>Severity</th>}
-        {record.action && <th>Operation</th>}
-        {record.api_url && <th>API Endpoint</th>}
-        {record.es_url && <th>ES Endpoint</th>}
-        {record.index && <th>ES Index</th>}
-        {record.doc_type && <th>ES Doc Type</th>}
-        {record.s3_bucket && <th>S3 Bucket</th>}
-        {record.folder_path && <th>S3 Folder</th>}
-        {record.aws_access_key && <th>AWS Access Key</th>}
-        {record.duration_in_mins && <th style={{minWidth: '105px'}}>Duration</th>}
-        {record.jira_site_url && <th>Jira Site URL </th>}
-        {record.jira_project_key && <th> Jira Project Key </th>}
-        {record.username && <th> Username </th>}
-        {record.issue_type && <th> Issue Type </th>}
-        {record.filters && <th> Filters </th>}
+        {record.notification_type && <th style={{minWidth: '180px'}}> 资源 </th>}
+        {record.email && <th>电子邮件</th>}
+        {record.channel && <th>通道</th>}
+        {record.webhook_url && <th>网页钩子链接</th>}
+        {record.service_key && <th>集成密钥</th>}
+        {record.access_token && <th>访问令牌</th>}
+        {record.node_type && <th>节点类型</th>}
+        {record.alert_level != undefined && <th>严重性</th>}
+        {record.action && <th>操作</th>}
+        {record.api_url && <th>API 端点</th>}
+        {record.es_url && <th>ES 端点</th>}
+        {record.index && <th>ES 索引</th>}
+        {record.doc_type && <th>ES 文档类型</th>}
+        {record.s3_bucket && <th>S3 存储桶</th>}
+        {record.folder_path && <th>S3 文件夹</th>}
+        {record.aws_access_key && <th>AWS 访问密钥</th>}
+        {record.duration_in_mins && <th style={{minWidth: '105px'}}>时长</th>}
+        {record.jira_site_url && <th>Jira 站点 URL </th>}
+        {record.jira_project_key && <th> Jira 项目密钥 </th>}
+        {record.username && <th> 用户名 </th>}
+        {record.issue_type && <th> 问题类别 </th>}
+        {record.filters && <th> 过滤器 </th>}
         {/*<th> Hosts </th>
         <th> Images </th> */}
-        <th> Tags </th>
-        <th> Kube Cluster </th>
-        <th> Kube Namespace </th>
-        <th style={{ textAlign: 'center' }}>Action</th>
+        <th> 标签 </th>
+        <th> Kube 集群 </th>
+        <th> Kube 命名空间 </th>
+        <th style={{ textAlign: 'center' }}>动作</th>
       </tr>
     );
   }

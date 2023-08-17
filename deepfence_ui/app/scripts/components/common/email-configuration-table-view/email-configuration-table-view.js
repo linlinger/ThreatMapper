@@ -18,12 +18,12 @@ class EmailConfigurationTableView extends React.Component {
     return (
       <tr style={{border: 'none'}}>
         { record.id && <th> Id </th> }
-        { record.email_provider && <th> Email provider </th> }
+        { record.email_provider && <th> 邮件服务商 </th> }
         { record.email_config.email && <th> Email </th> }
-        { record.email_config.ses_region && <th> SES region </th> }
+        { record.email_config.ses_region && <th> SES 区域 </th> }
         { record.smtp && <th> SMTP </th> }
-        { record.port && <th> Port </th> }
-        <th style={{textAlign: 'center'}}>Action</th>
+        { record.port && <th> 端口 </th> }
+        <th style={{textAlign: 'center'}}>动作</th>
       </tr>
     )
   }
