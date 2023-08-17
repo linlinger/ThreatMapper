@@ -45,18 +45,18 @@ class AWSS3IntegrationForm extends React.PureComponent {
             <div className={`form-group ${(submitted && !bucketName ? 'has-error' : '')}`}>
               <label htmlFor="bucketName">
                 <i className="fa fa-amazon" aria-hidden="true" />
-                <input type="text" className="form-control" name="bucketName" placeholder="S3 Bucket Name" value={bucketName} onChange={this.handleChange} />
+                <input type="text" className="form-control" name="存储桶名称" placeholder="S3 存储桶名称" value={bucketName} onChange={this.handleChange} />
               </label>
-              { submitted && !bucketName && <div className="field-error">S3 Bucket Name is required</div> }
+              { submitted && !bucketName && <div className="field-error">需要S3存储桶名称</div> }
             </div>
           </div>
           <div className="col-md-4">
             <div className={`form-group ${(submitted && !s3FolderPath ? 'has-error' : '')}`}>
               <label htmlFor="s3FolderPath">
                 <i className="fa fa-folder" aria-hidden="true" />
-                <input type="text" className="form-control" name="s3FolderPath" placeholder="S3 folder" value={s3FolderPath} onChange={this.handleChange} />
+                <input type="text" className="form-control" name="s3FolderPath" placeholder="S3 文件夹" value={s3FolderPath} onChange={this.handleChange} />
               </label>
-              { submitted && !s3FolderPath && <div className="field-error">S3 folder is required</div> }
+              { submitted && !s3FolderPath && <div className="field-error">需要S3 文件夹</div> }
             </div>
           </div>
         </div>
@@ -69,13 +69,13 @@ class AWSS3IntegrationForm extends React.PureComponent {
                   type="text"
                   className="form-control"
                   name="awsAccessKey"
-                  placeholder="AWS Access Key"
+                  placeholder="AWS 访问密钥"
                   value={awsAccessKey}
                   onChange={this.handleChange}
                   autoComplete="off"
                 />
               </label>
-              { submitted && !awsAccessKey && <div className="field-error">AWS Access Key is required</div> }
+              { submitted && !awsAccessKey && <div className="field-error">需要AWS 访问密钥</div> }
             </div>
           </div>
           <div className="col-md-4">
@@ -92,7 +92,7 @@ class AWSS3IntegrationForm extends React.PureComponent {
                   autoComplete="off"
                 />
               </label>
-              { submitted && !awsSecretKey && <div className="field-error">AWS Secret Key is required</div> }
+              { submitted && !awsSecretKey && <div className="field-error">需要AWS访问密钥</div> }
             </div>
           </div>
         </div>
@@ -111,7 +111,7 @@ class AWSS3IntegrationForm extends React.PureComponent {
                   autoComplete="off"
                 />
               </label>
-              { submitted && !awsRegion && <div className="field-error">AWS Region is required</div> }
+              { submitted && !awsRegion && <div className="field-error">需要AWS区域</div> }
             </div>
           </div>
         </div>

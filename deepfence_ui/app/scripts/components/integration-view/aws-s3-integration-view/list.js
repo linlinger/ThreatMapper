@@ -77,7 +77,7 @@ class AWSS3IntegrationList extends React.PureComponent {
 
   handleDeleteDialog(record) {
     const params = {
-      dialogTitle: 'Delete Integration?',
+      dialogTitle: '删除集成?',
       dialogBody: 'Are you sure you want to delete the S3 integration?',
       confirmButtonText: 'Yes, Delete',
       cancelButtonText: 'No, Keep',
